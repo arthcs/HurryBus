@@ -76,10 +76,10 @@ Excluir Evento
 JSONObject obj = new JSONObject();
 
 obj.put("idusuario",idusuario);
-obj.put("id", id);
+obj.put("id",id);
 obj.put("horaembarque",HoraEmbarque);
-obj.put("horadesembarque", HoraDesembarque);
-obj.put("embarquelatitude", EmbarqueLatitude);
+obj.put("horadesembarque",HoraDesembarque);
+obj.put("embarquelatitude",EmbarqueLatitude);
 obj.put("embarquelongitude",EmbarqueLongitude);
 obj.put("desembarquelatitude",DesembarqueLatitude);
 obj.put("desembarquelongitude",DesembarqueLongitude);
