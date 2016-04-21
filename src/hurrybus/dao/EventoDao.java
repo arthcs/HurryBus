@@ -189,18 +189,17 @@ public class EventoDao {
     public String toJson (Evento evento){
     	JSONObject my_obj = new JSONObject();
 
-    	my_obj.put("ID_USUARIO",evento.getUsuario().getId());
+    	my_obj.put("idusuario",evento.getUsuario().getId());
     	
-    	my_obj.put("HORA_EMBARQUE",evento.getHora_embarque());
-    	my_obj.put("HORA_DESEMBARQUE",evento.getHora_desembarque());
-    	
-    	my_obj.put("ID",evento.getId());
-    	my_obj.put("TAG",evento.getTAG());
-    	my_obj.put("NOTA",evento.getNota());
-    	my_obj.put("EMB_LAT",evento.getEmb_lat());
-    	my_obj.put("EMB_LONG",evento.getEmb_lon());
-    	my_obj.put("DES_LAT",evento.getDesemb_lat());
-    	my_obj.put("DES_LONG",evento.getDesemb_lon());
+    	my_obj.put("horaembarque",evento.getHora_embarque());
+    	my_obj.put("horadesembarque",evento.getHora_desembarque());
+    	my_obj.put("id",evento.getId());
+    	my_obj.put("tag",evento.getTAG());
+    	my_obj.put("nota",evento.getNota());
+    	my_obj.put("embarquelatitude",evento.getEmb_lat());
+    	my_obj.put("embarquelongitude",evento.getEmb_lon());
+    	my_obj.put("desembarquelatitude",evento.getDesemb_lat());
+    	my_obj.put("desembarquelongitude",evento.getDesemb_lon());
     	
     	String json_evt = my_obj.toString();
 		return json_evt;
@@ -208,26 +207,26 @@ public class EventoDao {
     
     //recebe a String Jsom e retorna um Obj Evento
     public Evento fromJson(String jsonEvento){
-    	
+
     	JSONObject obj = new JSONObject(jsonEvento);
     	Evento evento = new Evento();
-    	
-    	evento.setId(obj.getInt("ID"));
-    	
+
+    	evento.setId(obj.getInt("id"));
+
     	UsuarioDao usuarioDao = new UsuarioDao();
-    	Usuario usuario = usuarioDao.buscaUsuarioPorId(obj.getInt("ID_USUARIO"));
-    	
+    	Usuario usuario = usuarioDao.buscaUsuarioPorId(obj.getInt("idusuario"));
+
     	evento.setUsuario(usuario);
-    	
-    	evento.setHora_desembarque(obj.getString("HORA_DESEMBARQUE")); // Não aparece a hora na String Json
-    	evento.setHora_embarque(obj.getString("HORA_EMBARQUE"));
-    	
-    	evento.setTAG(obj.getString("TAG"));
-    	evento.setNota(obj.getInt("NOTA"));
-    	evento.setEmb_lat(obj.getInt("EMB_LAT"));
-    	evento.setEmb_lon(obj.getInt("EMB_LONG"));
-    	evento.setDesemb_lat(obj.getInt("DES_LAT"));
-    	evento.setDesemb_lon(obj.getInt("DES_LONG"));
+
+    	evento.setHora_desembarque(obj.getString("horadesembarque"));
+    	evento.setHora_embarque(obj.getString("horaembarque"));
+
+    	evento.setTAG(obj.getString("tag"));
+    	evento.setNota(obj.getInt("nota"));
+    	evento.setEmb_lat(obj.getInt("embarquelatitude"));
+    	evento.setEmb_lon(obj.getInt("embarquelongitude"));
+    	evento.setDesemb_lat(obj.getInt("desembarquelatitude"));
+    	evento.setDesemb_lon(obj.getInt("desembarquelongitude"));
 
 		return evento;
     }

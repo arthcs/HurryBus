@@ -14,11 +14,15 @@ Cadastrar novo evento
  <div class="panel-body">
 	   <form action="" method="POST">
 	   
-	   		<div class="form-group">
+	    	  <div class="form-group">
+			    <label for="inputlg">Id do Usuário</label>
+			    <input class="form-control" id="idusuario" name="idusuario" type="text">
+			  </div>
+	   
+	   		  <div class="form-group">
 			    <label for="inputlg">Id</label>
 			    <input class="form-control" id="id" name="id" type="text">
 			  </div>
-
 	    	  <div class="form-group">
 			    <label for="inputlg">Hora de Embarque</label>
 			    <input class="form-control" id="horaembaque" name="horaembarque" type="text" >
@@ -37,11 +41,11 @@ Cadastrar novo evento
 			  </div>
 			  <div class="form-group">
 			    <label for="inputlg">Desembarque latitude</label>
-			    <input class="form-control" id="desembarquelatitude" name="embarquelatitude" type="text">
+			    <input class="form-control" id="desembarquelatitude" name="desembarquelatitude" type="text">
 			  </div>
 			  <div class="form-group">
 			    <label for="inputsm">Desembarque longitude</label>
-			    <input class="form-control" id="desembarquelongitude" name="embarquelongitude" type="text">
+			    <input class="form-control" id="desembarquelongitude" name="desembarquelongitude" type="text">
 			  </div>
 			  <div class="form-group">
 			    <label for="inputlg">Nota</label>
@@ -57,10 +61,11 @@ Cadastrar novo evento
 	  
 <% 
 //recebe os valores digitados
+	String idusuario = request.getParameter("idusuario");
 	String id = request.getParameter("id");
 	String HoraEmbarque = request.getParameter("horaembarque");
 	String HoraDesembarque = request.getParameter("horadesembarque");
-	String EmbarqueLatitude = request.getParameter("embarquelatitudde");
+	String EmbarqueLatitude = request.getParameter("embarquelatitude");
 	String EmbarqueLongitude = request.getParameter("embarquelongitude");
 	String DesembarqueLatitude = request.getParameter("desembarquelatitude");
 	String DesembarqueLongitude = request.getParameter("desembarquelongitude");
@@ -69,10 +74,11 @@ Cadastrar novo evento
 
 JSONObject obj = new JSONObject();
 
+obj.put("idusuario",idusuario);
 obj.put("id", id);
 obj.put("horaembarque",HoraEmbarque);
 obj.put("horadesembarque", HoraDesembarque);
-obj.put("embarquelatitudde", EmbarqueLatitude);
+obj.put("embarquelatitude", EmbarqueLatitude);
 obj.put("embarquelongitude",EmbarqueLongitude);
 obj.put("desembarquelatitude",DesembarqueLatitude);
 obj.put("desembarquelongitude",DesembarqueLongitude);
