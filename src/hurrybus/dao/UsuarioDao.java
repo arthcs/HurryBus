@@ -161,7 +161,8 @@ public class UsuarioDao {
     	JSONObject my_obj = new JSONObject(json);
     	Usuario user = new Usuario();
     	
-    	user.setId(my_obj.getInt("id"));
+    	//id é fornecido pelo banco
+    	//user.setId(my_obj.getInt("id"));
     	user.setName(my_obj.getString("nome"));
     	user.setEmail(my_obj.getString("email"));
     	user.setSenha(my_obj.getString("senha"));

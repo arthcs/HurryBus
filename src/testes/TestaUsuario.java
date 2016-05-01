@@ -1,11 +1,14 @@
 package testes;
 
+import java.io.IOException;
+
+import hurrybus.UsuarioHandler;
 import hurrybus.dao.UsuarioDao;
 import hurrybus.model.Usuario;
 
 public class TestaUsuario {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		Usuario arthur = new Usuario();
 		 arthur.setName("Scar");
@@ -47,6 +50,10 @@ public class TestaUsuario {
 		 Usuario user = new Usuario();
 		 //user=dao.fromJson(JsonUser);
 		 //System.out.println("JSON para Obj="+user.toString());
+		 
+//		 UsuarioHandler handler = new UsuarioHandler();
+//		 handler.novoUsuario("teste", null);
+//		 
 	}
 
 }
