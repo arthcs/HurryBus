@@ -18,7 +18,7 @@ public class Usuario {
     private String name;
     private String email;
     private String senha;
-    private int id;
+    private int id = -1;
 
     public int getId() {
 		return id;

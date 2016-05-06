@@ -21,6 +21,14 @@ Usuario
 	<input type="submit" value="Atualizar"/>
 </form>
 
+<form action="http://localhost:8080/HurryBus/rest/usuarios" method="GET">
+	<input type="submit" value="Mostrar todos"/>
+</form>
+
+<form action="CRUD\UsuarioBuscaId.jsp" method="GET">
+	<input type="submit" value="Buscar por ID"/>
+</form>
+
 </br>
 
 <!--Clicando em um desses o usuario será direcinao para as funções CRUD do Evento-->
@@ -35,6 +43,10 @@ Eventos
 
 <form action="CRUD\EventoAtualiza.jsp" method="POST">
 	<input type="submit" value="Alterar"/>
+</form>
+
+<form action="" method="POST">
+	<input type="submit" value="Mostrar todos"/>
 </form>
 
 </body>

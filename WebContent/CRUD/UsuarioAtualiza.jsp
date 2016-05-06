@@ -6,14 +6,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+        $("#atualiza").click(function() {
+               $.ajax({
+            	  url: "http://localhost:8080/HurryBus/rest/usuarios",
+               contentType: "application/json; charset=utf-8",
+               type: "put",
+               dataType:"json",
+               data : JSON.stringify( {id: $('#id').val(), nome : $('#nome').val(), senha : $('#senha').val(), email : $('#email').val()} ),
+               success: function(data) {
+                   console.log(data);
+               }
+           });
+       });       
+   });
+</script>
+
 <title>Atualiza Usuario</title>
 </head>
 <body>
-Insira os dados para atualizar o Usuario
+IInsira os dados para atualizar o Usuario
 
 <div class="container">
  <div class="panel-body">
-	   <form action="" method="POST">
+	   <form >
 	    	  <div class="form-group">
 			    <label for="inputlg">Id</label>
 			    <input class="form-control" id="id" name="id" type="text" >
@@ -30,7 +51,7 @@ Insira os dados para atualizar o Usuario
 			    <label for="inputsm">Email</label>
 			    <input class="form-control" id="email" name="email" type="text">
 			  </div>
-			  <input type="submit" id="cadastrar" class="btn btn-default" value="Enviar"/>
+			  <input type="submit" id="atualiza" class="btn btn-default" value="Atualizar"/>
 	   </form>
 	  </div>
 	  
@@ -48,7 +69,7 @@ obj.put("nome", nome);
 obj.put("senha", senha);
 obj.put("email", email);
 
-out.println(obj.toString());
+//out.println(obj.toString());
 %>
 </div>
 </body>

@@ -142,14 +142,14 @@ public class UsuarioDao {
         }        
     }
     
-    
+  //recebe a Obj usuario e retorna um String Jsom
     public String toJson (Usuario u){
     	JSONObject my_obj = new JSONObject();
     	
-    	my_obj.put("nome",u.getName());
-    	my_obj.put("email",u.getEmail());
     	my_obj.put("id", u.getId());
-    	my_obj.put("senha",u.getSenha());
+    	my_obj.put("nome",u.getName());
+        my_obj.put("email",u.getEmail());
+        my_obj.put("senha",u.getSenha());
     	
     	String json_user = my_obj.toString();
 		return json_user;
@@ -160,14 +160,13 @@ public class UsuarioDao {
     	
     	JSONObject my_obj = new JSONObject(json);
     	Usuario user = new Usuario();
-    	
-    	//id é fornecido pelo banco
-    	//user.setId(my_obj.getInt("id"));
+    	if (my_obj.has("id"))
+    		user.setId(my_obj.getInt("id"));
+    		
     	user.setName(my_obj.getString("nome"));
     	user.setEmail(my_obj.getString("email"));
     	user.setSenha(my_obj.getString("senha"));
     	
 		return user;
     }
-    
 }

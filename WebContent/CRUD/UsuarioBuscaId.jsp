@@ -13,11 +13,11 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-        $("#excluir").click(function() {
+        $("#buscar").click(function() {
                $.ajax({
             	  url: "http://localhost:8080/HurryBus/rest/usuarios/"+$('#id').val(),
                contentType: "application/json; charset=utf-8",
-               type: "delete",
+               type: "get",
                dataType:"json",
                success: function(data) {
                    console.log(data);
@@ -27,10 +27,10 @@
    });
 </script>
 
-<title>Deletar Usuario</title>
+<title>Buscar Usuario</title>
 </head>
 <body>
-Excluir cadastro
+Busca por id
 
 <div class="container">
  <div class="panel-body">
@@ -39,7 +39,7 @@ Excluir cadastro
 			    <label for="inputlg">Id</label>
 			    <input class="form-control" id="id" name="id" type="text" >
 			  </div>
-			  <input type="submit" id="excluir" class="btn btn-default" value="Excluir"/>
+			  <input type="submit" id="buscar" class="btn btn-default" value="Buscar"/>
 	   </form>
 	  </div>
 </div>
