@@ -1,7 +1,7 @@
 /**
  * 
  */
-package hurrybus;
+package tuturiais;
 
 /**
  * @author Blackbeard

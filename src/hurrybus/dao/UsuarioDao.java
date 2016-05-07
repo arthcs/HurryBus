@@ -53,7 +53,7 @@ public class UsuarioDao {
     }
  
    /**
-    * Busca Usuário cadastrado na tabela Eventos por Id
+    * Busca Usuário cadastrado na tabela Usuarios por Id
     * 
     * @param id  Um inteiro com o id do usuário a ser buscado
     * @return    Retorna um Objeto do tipo Usuário com o usuário buscado
@@ -177,8 +177,8 @@ public class UsuarioDao {
    /**
     * Recebe uma String JSON e transforma em um objeto do tipo Usuario
     * 
-    * @param jsonEvento		String JSON que será transformada em um ojeto do tipo Usuario
-    * @return        		Retorna um Objeto do tipo Usuario da StringJSON
+    * @param json	String JSON que será transformada em um ojeto do tipo Usuario
+    * @return    	Retorna um Objeto do tipo Usuario da StringJSON
     */
     public Usuario fromJson(String json){
     	

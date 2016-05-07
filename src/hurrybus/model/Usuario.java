@@ -8,9 +8,10 @@ package hurrybus.model;
 
 
 /**
- *
- * @author Dener
- * @update Arthur Silveira
+ *	Classe que define o modelo de Usuario
+ * 
+ * @author            Arthur Silveira
+ * @author            Dener Kemele
  * 
  */
 public class Usuario {
@@ -28,52 +29,52 @@ public class Usuario {
 		this.id = id;
 	}
 
-	@Override
-	public String toString() {
-		return "Usuario [name=" + name + ", email=" + email + ", senha=" + senha + ",  id=" + id
-				+ "]";
-	}
-
 	/**
-     * @return the name
+     * @return Retorna a variável nome
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @param name the name to set
+     * @param name inicializa a variável nome
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @return the email
+     * @return retorna a variável email
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     * @param email the email to set
+     * @param email inicializa a variável email
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * @return the senha
+     * @return retorna a variável senha
      */
     public String getSenha() {
         return senha;
     }
 
     /**
-     * @param senha the senha to set
+     * @param senha inicializa a variável senha
      */
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
+	@Override
+	public String toString() {
+		return "Usuario [name=" + name + ", email=" + email + ", senha=" + senha + ",  id=" + id
+				+ "]";
+	}
 
 }

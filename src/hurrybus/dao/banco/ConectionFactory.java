@@ -5,9 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
- * @author Dener
- * @update Arthur Silveira
+ *	Esta classe é responsável por estabelecer uma conexão com o banco de dados PostgreSQL
+ * 
+ * @author            Arthur Silveira
+ * @author            Dener Kemele
  * 
  */
 public class ConectionFactory {
@@ -17,6 +18,12 @@ public class ConectionFactory {
     private final String USUARIO = "postgres";
     private final String SENHA = "admin";
 
+    
+    /**
+     * Estabelece a conexão com o banco de dados
+     * 
+     * @return	Retorna um objeto do tipo Connection
+     */
     public Connection getConnetion(){
         try {
             Class.forName(driver);
