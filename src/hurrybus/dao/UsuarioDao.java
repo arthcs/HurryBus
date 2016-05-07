@@ -1,12 +1,4 @@
 package hurrybus.dao;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import hurrybus.dao.banco.ConectionFactory;
 import hurrybus.model.Usuario;
 import java.sql.*;
@@ -17,19 +9,24 @@ import java.util.List;
 import org.json.JSONObject;
 
 /**
- *
- * @author Dener
- * @update Arthur Silveira
+ *	Esta classe é responsavel por todas as requisições e persistencias
+ * nescessárias na tabela Usuário do banco de dados.
+ * 
+ * @author            Arthur Silveira
+ * @author            Dener Kemele
  * 
  */
 public class UsuarioDao {
 
     private Connection connection;
-
     Connection con;
     Statement stmt;
 
-
+   /**
+    * Mostra todos os Usuarios cadastrados
+    * 
+    * @return	Retorna um ArryList com todos os Usuários
+    */
     public List<Usuario> buscarTodosUsuarios() {
     	ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
         this.connection = new ConectionFactory().getConnetion();
@@ -55,7 +52,12 @@ public class UsuarioDao {
         return usuarios;
     }
  
-  //ok
+   /**
+    * Busca Usuário cadastrado na tabela Eventos por Id
+    * 
+    * @param id  Um inteiro com o id do usuário a ser buscado
+    * @return    Retorna um Objeto do tipo Usuário com o usuário buscado
+    */
     public Usuario buscaUsuarioPorId(int id) {    	
         try {
         	con = new ConectionFactory().getConnetion();
@@ -83,7 +85,11 @@ public class UsuarioDao {
         }        
     }
 
-    //ok
+   /**
+ 	* Exclui Usuário cadastrado no banco de dados
+ 	* 
+ 	* @param usuario  Objeto do tipo Usuario com o usuário que será removido
+ 	*/
     public void excluiUsuario(Usuario usuario) {
         try {
         	con = new ConectionFactory().getConnetion();
@@ -101,7 +107,11 @@ public class UsuarioDao {
         }
     }
 
-   //ok
+   /**
+    * Atualiza Usuario cadastrado no banco de dados
+    * 
+    * @param usuario  Objeto do tipo Usuario com o usuário que será atualizado
+    */
     public void atualizaUsuario(Usuario usuario) {
         try {
             con = new ConectionFactory().getConnetion();
@@ -122,7 +132,11 @@ public class UsuarioDao {
         }        
     }
     
-    //ok
+   /**
+    * Cadastra novo Usuário na Tabela Usuarios
+    * 
+    * @param usuario  Objeto do tipo Usuario com o usuário que será cadastrado
+    */
     public void insereUsuario(Usuario usuario) {
         try {
             con = new ConectionFactory().getConnetion();       
@@ -142,7 +156,12 @@ public class UsuarioDao {
         }        
     }
     
-  //recebe a Obj usuario e retorna um String Jsom
+   /**
+    * Serializa um objeto do tipo Usuários em uma JSONstring
+    * 
+    * @param u  Objeto do tipo Usuario com o usuário que será transformado em String JSON
+    * @return   StringJSON do objeto
+    */
     public String toJson (Usuario u){
     	JSONObject my_obj = new JSONObject();
     	
@@ -155,13 +174,18 @@ public class UsuarioDao {
 		return json_user;
     }
     
-    //recebe a String Jsom e retorna um Obj usuario
+   /**
+    * Recebe uma String JSON e transforma em um objeto do tipo Usuario
+    * 
+    * @param jsonEvento		String JSON que será transformada em um ojeto do tipo Usuario
+    * @return        		Retorna um Objeto do tipo Usuario da StringJSON
+    */
     public Usuario fromJson(String json){
     	
     	JSONObject my_obj = new JSONObject(json);
     	Usuario user = new Usuario();
-    	if (my_obj.has("id"))
-    		user.setId(my_obj.getInt("id"));
+    	
+    	if (my_obj.has("id"))user.setId(my_obj.getInt("id"));
     		
     	user.setName(my_obj.getString("nome"));
     	user.setEmail(my_obj.getString("email"));

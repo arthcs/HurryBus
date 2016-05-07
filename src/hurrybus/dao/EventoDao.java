@@ -1,12 +1,4 @@
 package hurrybus.dao;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import hurrybus.dao.banco.ConectionFactory;
 import hurrybus.model.Evento;
 import hurrybus.model.Usuario;
@@ -22,30 +14,33 @@ import java.util.List;
 import org.json.JSONObject;
 
 /**
- *
- * @author Dener
- * @update Arthur Silveira
+ *	Esta classe é responsavel por todas as requisições e persistencias
+ * nescessárias na tabela Evento do banco de dados.
+ * 
+ * @author            Arthur Silveira
+ * @author            Dener Kemele
  * 
  */
 public class EventoDao {
-
-   // private static final String String = null;
-	//private Connection connection;
-
     Connection con;
     Statement stmt = null;
 
-    
+
+    /**
+     * Mostra todos os eventos cadastrados
+     * 
+     * @return	Retorna um ArryList com todos os eventos
+     */
     public List<Evento> mostrarEvento() {
     	
     	ArrayList<Evento> eventos = new ArrayList<Evento>();
         try {
             con = new ConectionFactory().getConnetion();
-
             con.setAutoCommit(false);
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM evento;");
             UsuarioDao dao = new UsuarioDao();
+            
             while (rs.next()) {
                 int id = rs.getInt("id");
                 int userId = rs.getInt("id_usuario");
@@ -82,7 +77,11 @@ public class EventoDao {
         return eventos;
     }
 
-
+    /**
+ 	* Exclui Evento cadastrado no banco de dados
+ 	* 
+ 	* @param evento  Objeto do tipo Evento com o evento que será removido
+ 	*/
     public void excluiEvento(Evento evento) {
         try {
             con = new ConectionFactory().getConnetion();
@@ -99,7 +98,11 @@ public class EventoDao {
         }        
     }
 
-
+    /**
+     * Cadastra novo evento na Tabela Evento
+     * 
+     * @param evento  Objeto do tipo Evento com o evento que será cadastrado
+     */
     public void insereEvento(Evento evento) {
         try {
             con = new ConectionFactory().getConnetion();
@@ -128,6 +131,12 @@ public class EventoDao {
         }        
     }
     
+    /**
+     * Busca Evento cadastrado na tabela Eventos por Id
+     * 
+     * @param id  Um inteiro com o id do Evento a ser buscado
+     * @return    Retorna um Objeto do tipo Evento com o evento buscado
+     */
     public Evento buscaEvento(int id){
     	
     	con = new ConectionFactory().getConnetion();
@@ -155,12 +164,16 @@ public class EventoDao {
 	        
 		} catch (SQLException e) {
 			System.out.println("Erro na busca!");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
     }
     
+    /**
+     * Atualiza Evento cadastrado no banco de dados
+     * 
+     * @param evento  Objeto do tipo Evento com o evento que será atualizado
+     */
     public void updateEvento(Evento evento){
     	try {
             con = new ConectionFactory().getConnetion();
@@ -185,12 +198,16 @@ public class EventoDao {
         }
     }
     
-    //Serializa um objeto do tipo Evento em uma JSONstring
+    /**
+     * Serializa um objeto do tipo Evento em uma JSONstring
+     * 
+     * @param evento  Objeto do tipo Evento com o evento que será transformado em String JSON
+     * @return        StringJSON do objeto
+     */
     public String toJson (Evento evento){
     	JSONObject my_obj = new JSONObject();
 
     	my_obj.put("idusuario",evento.getUsuario().getId());
-    	
     	my_obj.put("horaembarque",evento.getHora_embarque());
     	my_obj.put("horadesembarque",evento.getHora_desembarque());
     	my_obj.put("id",evento.getId());
@@ -205,22 +222,25 @@ public class EventoDao {
 		return json_evt;
     }
     
+    /**
+     * Recebe uma String JSON e transforma em um objeto do tipo Evento
+     * 
+     * @param jsonEvento	String JSON que será transformada em um ojeto do tipo Evento
+     * @return        		Retorna um Objeto do tipo Evento da StringJSON
+     */
     //recebe a String Jsom e retorna um Obj Evento
     public Evento fromJson(String jsonEvento){
-
     	JSONObject obj = new JSONObject(jsonEvento);
     	Evento evento = new Evento();
 
-    	evento.setId(obj.getInt("id"));
-
     	UsuarioDao usuarioDao = new UsuarioDao();
     	Usuario usuario = usuarioDao.buscaUsuarioPorId(obj.getInt("idusuario"));
-
     	evento.setUsuario(usuario);
-
+    	
+    	if (obj.has("id"))evento.setId(obj.getInt("id"));
+    	
     	evento.setHora_desembarque(obj.getString("horadesembarque"));
     	evento.setHora_embarque(obj.getString("horaembarque"));
-
     	evento.setTAG(obj.getString("tag"));
     	evento.setNota(obj.getInt("nota"));
     	evento.setEmb_lat(obj.getInt("embarquelatitude"));
