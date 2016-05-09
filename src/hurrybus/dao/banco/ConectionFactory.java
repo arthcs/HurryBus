@@ -14,9 +14,9 @@ import java.sql.SQLException;
 public class ConectionFactory {
     
     String driver = "org.postgresql.Driver";
-    private final String URL = "jdbc:postgresql://localhost:5432/HurryBus";
-    private final String USUARIO = "postgres";
-    private final String SENHA = "admin";
+    private final String url = "jdbc:postgresql://localhost:5432/HurryBus";
+    private final String usuario = "postgres";
+    private final String senha = "admin";
 
     
     /**
@@ -27,7 +27,7 @@ public class ConectionFactory {
     public Connection getConnetion(){
         try {
             Class.forName(driver);
-            return DriverManager.getConnection(URL, USUARIO, SENHA);
+            return DriverManager.getConnection(url, usuario, senha);
         	}catch (SQLException | ClassNotFoundException erro) {
         		System.out.println("Erro ao tenta conectar!");
         		throw new RuntimeException(erro);

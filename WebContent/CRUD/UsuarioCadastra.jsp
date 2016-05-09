@@ -10,7 +10,6 @@
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
         $("#cadastrar").click(function() {
@@ -19,7 +18,11 @@
                contentType: "application/json; charset=utf-8",
                type: "post",
                dataType:"json",
-               data : JSON.stringify( {nome : $('#nome').val(), senha : $('#senha').val(), email : $('#email').val()} ),
+               data : JSON.stringify( {
+            	   nome : $('#nome').val(),
+            	   senha : $('#senha').val(),
+            	   email : $('#email').val()
+            	   }),
                success: function(data) {
                    console.log(data);
                }

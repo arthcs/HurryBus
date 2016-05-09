@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import hurrybus.model.Usuario;
 import hurrybus.dao.UsuarioDao;
@@ -30,9 +31,6 @@ import hurrybus.dao.UsuarioDao;
 
 @Path("/usuarios")
 public class UsuarioHandler {
-	UsuarioDao dao = new UsuarioDao();
-	Usuario user = new Usuario();
-	
 	
    /**
     * Insere um novo Usuário na tabela Usuarios
@@ -44,12 +42,12 @@ public class UsuarioHandler {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response InsereUsuario(String StringJSON){
-		//System.out.println(StringJSON);
+	public Response insereUsuario(String StringJSON){
+		UsuarioDao dao = new UsuarioDao();
+		Usuario user = new Usuario();
 		user = dao.fromJson(StringJSON);
-		//System.out.println(user.toString());
 		dao.insereUsuario(user);
-		return Response.ok(200).entity(StringJSON).build();
+		return Response.ok().build();
 	}
 	
 	
@@ -61,16 +59,18 @@ public class UsuarioHandler {
     */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUsuario() {
+	public Response getUsuarios() {
+		UsuarioDao dao = new UsuarioDao();
+		
 		Collection<Usuario> ListaUsers = new ArrayList<Usuario>();
 		ListaUsers=dao.buscarTodosUsuarios();
 		
 		JSONArray ListaJson = new JSONArray();
 		ListaJson.put(ListaUsers);
-		
-		System.out.println(ListaJson.toString());
+		JSONObject obj = new JSONObject();
+		obj.put("usuarios", ListaJson);
 
-		return Response.ok(200).entity(ListaJson.toString()).build();
+		return Response.ok().entity(obj.toString()).build();
 	}
 	
    /**
@@ -83,15 +83,13 @@ public class UsuarioHandler {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response UpdateUsuario(String StringJSON){
+	public Response atualizaUsuario(String StringJSON){
+		UsuarioDao dao = new UsuarioDao();
+		Usuario user = new Usuario();
+		
 		user = dao.fromJson(StringJSON);
-		
-		//System.out.println(StringJSON);
-		//System.out.println(user.toString());
-		
 		dao.atualizaUsuario(user);
-		
-		return Response.ok(200).entity("Usuario "+user.getName()+" atualizado").build();	
+		return Response.ok().build();	
 	}
 	
    /**
@@ -105,11 +103,13 @@ public class UsuarioHandler {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-    public Response DeletaUsuario(@PathParam("id") Integer id) {
+    public Response excluiUsuario(@PathParam("id") Integer id) {
+		UsuarioDao dao = new UsuarioDao();
+		Usuario user = new Usuario();
+		
 		user = dao.buscaUsuarioPorId(id);
-		//System.out.println(user.toString());
 		dao.excluiUsuario(user);
-		return Response.ok(200).entity("Usuario "+user.getName()+" deletado").build();	
+		return Response.ok().build();	
 	}
 	
    /**
@@ -123,12 +123,13 @@ public class UsuarioHandler {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	 public Response BuscaUsuarioId(@PathParam("id") Integer id) {
+	 public Response buscaUsuarioId(@PathParam("id") Integer id) {
+		UsuarioDao dao = new UsuarioDao();
+		Usuario user = new Usuario();
 		
 		user=dao.buscaUsuarioPorId(id);
 		String StringJSON = dao.toJson(user);
-		System.out.println(StringJSON);
-		return Response.ok(200).entity(StringJSON).build();
+		return Response.ok().entity(StringJSON).build();
 	}
 
 }

@@ -23,7 +23,7 @@
                dataType:"json",
                success: function(data) {
                    console.log(data);
-                   // vamos gerar um html e guardar nesta variável
+                   // gerar um html e guardar nesta variável
                    var html = "";
                    // coloco os dados na variavel
                   
@@ -31,9 +31,9 @@
                     html += "<strong>Nome:</strong><br /> "+data.nome;
                     html += "<strong>Senha:</strong><br /> "+data.senha;
                     html += "<strong>Email:</strong><br /> "+data.email;
-                   // e por ultimo dou uma quebra de linha
+                   //quebra de linha
                     html += "<br />";
-               	   //coloco a variável html na tela
+               	   //coloca a variável html na tela
                    $('body').html(html);
                    
                }

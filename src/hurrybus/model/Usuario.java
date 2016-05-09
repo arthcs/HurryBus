@@ -1,12 +1,5 @@
 package hurrybus.model;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 /**
  *	Classe que define o modelo de Usuario
  * 
@@ -19,7 +12,7 @@ public class Usuario {
     private String name;
     private String email;
     private String senha;
-    private int id = -1;
+    private int id;
 
     public int getId() {
 		return id;

@@ -17,21 +17,17 @@ import org.json.JSONObject;
  * 
  */
 public class UsuarioDao {
-
-    private Connection connection;
-    Connection con;
-    Statement stmt;
-
    /**
     * Mostra todos os Usuarios cadastrados
     * 
-    * @return	Retorna um ArryList com todos os Usuários
+    * @return	Retorna um List com todos os Usuários
     */
     public List<Usuario> buscarTodosUsuarios() {
+        Connection con;
+        Statement stmt;
     	ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-        this.connection = new ConectionFactory().getConnetion();
+        con = new ConectionFactory().getConnetion();
         try {
-            con = connection;
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM USUARIOS");
             while (rs.next()) {                
@@ -45,7 +41,6 @@ public class UsuarioDao {
             rs.close();
             con.close();
             stmt.close();
-            System.out.println("Usuarios mostrados com sucesso");
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }        
@@ -56,9 +51,11 @@ public class UsuarioDao {
     * Busca Usuário cadastrado na tabela Usuarios por Id
     * 
     * @param id  Um inteiro com o id do usuário a ser buscado
-    * @return    Retorna um Objeto do tipo Usuário com o usuário buscado
+    * @return    Retorna um Objeto do Usuário buscado
     */
-    public Usuario buscaUsuarioPorId(int id) {    	
+    public Usuario buscaUsuarioPorId(int id) {
+        Connection con;
+        Statement stmt;
         try {
         	con = new ConectionFactory().getConnetion();
         	con.setAutoCommit(false);
@@ -88,9 +85,11 @@ public class UsuarioDao {
    /**
  	* Exclui Usuário cadastrado no banco de dados
  	* 
- 	* @param usuario  Objeto do tipo Usuario com o usuário que será removido
+ 	* @param usuario  Objeto do usuário que será removido
  	*/
     public void excluiUsuario(Usuario usuario) {
+        Connection con;
+        Statement stmt;
         try {
         	con = new ConectionFactory().getConnetion();
         	con.setAutoCommit(false);
@@ -110,9 +109,11 @@ public class UsuarioDao {
    /**
     * Atualiza Usuario cadastrado no banco de dados
     * 
-    * @param usuario  Objeto do tipo Usuario com o usuário que será atualizado
+    * @param usuario  Objeto do usuário que será atualizado
     */
     public void atualizaUsuario(Usuario usuario) {
+        Connection con;
+        Statement stmt;
         try {
             con = new ConectionFactory().getConnetion();
             con.setAutoCommit(false);
@@ -135,9 +136,11 @@ public class UsuarioDao {
    /**
     * Cadastra novo Usuário na Tabela Usuarios
     * 
-    * @param usuario  Objeto do tipo Usuario com o usuário que será cadastrado
+    * @param usuario  Objeto do usuário que será cadastrado
     */
     public void insereUsuario(Usuario usuario) {
+        Connection con;
+        Statement stmt;
         try {
             con = new ConectionFactory().getConnetion();       
             con.setAutoCommit(false);
@@ -159,7 +162,7 @@ public class UsuarioDao {
    /**
     * Serializa um objeto do tipo Usuários em uma JSONstring
     * 
-    * @param u  Objeto do tipo Usuario com o usuário que será transformado em String JSON
+    * @param u  Objeto Usuário que será transformado em String JSON
     * @return   StringJSON do objeto
     */
     public String toJson (Usuario u){
