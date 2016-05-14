@@ -13,7 +13,7 @@ import hurrybus.model.Usuario;
  * @author Arthur Silveira
  *
  */
-public class TestaEvento {
+public class TestaEventoDao {
 
 	/**
 	 * @param args
@@ -35,11 +35,11 @@ public class TestaEvento {
 		evt.setEmbarqueLongitude(10029);
 		evt.setDesembarqueLatitude(000123);
 		evt.setDesembarqueLongitude(000415);
-		evt.setDesembarqueHora(hora.toString());
-		evt.setDesembarqueHora(hora.toString());
+		evt.setDesembarqueHora(hora);
+		evt.setEmbarqueHora(hora);
 		
 		EventoDao dao = new EventoDao();
-		//System.out.println(evt.toString());
+		System.out.println(evt.toString());
 		//dao.insereEvento(evt);
 		
 		//dao.excluiEvento(evt);
@@ -53,8 +53,8 @@ public class TestaEvento {
 		
 		//---------Atualiza----------
 		evt.setTAG("atualizado");
-		evt.setDesembarqueHora(hora.toString());
-		dao.atualizarEvento(evt);
+		evt.setDesembarqueHora(hora);
+		dao.atualizarEvento(evt); //problemas pois no banco é Timestamp esta passando uma string
 		
 		//----teste JSON
 //		System.out.println(evt.toString());

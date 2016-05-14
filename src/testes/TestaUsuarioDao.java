@@ -6,7 +6,7 @@ import hurrybus.UsuarioHandler;
 import hurrybus.dao.UsuarioDao;
 import hurrybus.model.Usuario;
 
-public class TestaUsuario {
+public class TestaUsuarioDao {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub

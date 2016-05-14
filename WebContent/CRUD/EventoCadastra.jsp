@@ -19,8 +19,6 @@
                dataType:"json",
                data : JSON.stringify( {
             	   idusuario : $('#idusuario').val(),
-            	   horaembaque : $('#horaembaque').val(),
-            	   horadesembarque : $('#horadesembarque').val(),
             	   embarquelatitude : $('#embarquelatitude').val(),
             	   embarquelongitude : $('#embarquelongitude').val(),
             	   desembarquelatitude : $('#desembarquelatitude').val(),
@@ -46,15 +44,6 @@ Cadastrar novo evento
 	    	  <div class="form-group">
 			    <label for="inputlg">Id do Usuario</label>
 			    <input class="form-control" id="idusuario" name="idusuario" type="text">
-			  </div>
-
-	    	  <div class="form-group">
-			    <label for="inputlg">Hora de Embarque</label>
-			    <input class="form-control" id="horaembaque" name="horaembarque" type="text" >
-			  </div>
-	   		 <div class="form-group">
-			    <label for="inputlg">Hora de Desembarque</label>
-			    <input class="form-control" id="horadesembarque" name="horadesembarque" type="text" >
 			  </div>
 			  <div class="form-group">
 			    <label for="inputlg">Embarque latitude</label>

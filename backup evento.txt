@@ -1,7 +1,5 @@
 package hurrybus.model;
 
-import java.sql.Timestamp;
-
 /**
  *	Classe que define o modelo de evento
  * 
@@ -10,15 +8,14 @@ import java.sql.Timestamp;
  * 
  */
 public class Evento {
-	
+    
 	private int Id;
 	private Usuario usuario;
-	private Timestamp embarqueHora; 
-	private Timestamp desembarqueHora;
-	private double embarqueLatitude, embarqueLongitude; 
-	private double desembarqueLatitude, desembarqueLongitude;
+	private String embarqueHora; 
+	private String desembarqueHora;
+	private Integer embarqueLatitude, embarqueLongitude; 
+	private Integer desembarqueLatitude, desembarqueLongitude;
 	private Integer nota; 
-	// TODO renomar para minusculo
 	private String TAG;
 
 	
@@ -39,28 +36,28 @@ public class Evento {
     /**
      * @return retorno da variável embarqueHora
      */
-    public Timestamp getEmbarqueHora() {
+    public String getEmbarqueHora() {
         return embarqueHora;
     }
 
     /**
      * @param embarqueHora inicializa a variavel embarqueHora
      */
-    public void setEmbarqueHora(Timestamp embarqueHora) {
+    public void setEmbarqueHora(String embarqueHora) {
         this.embarqueHora = embarqueHora;
     }
 
     /**
      * @return retorno da variável desembarqueHora
      */
-    public Timestamp getDesembarqueHora() {
+    public String getDesembarqueHora() {
         return desembarqueHora;
     }
 
     /**
      * @param desembarqueHora inicializa a variavel hora_desmbarque
      */
-    public void setDesembarqueHora(Timestamp hora) {
+    public void setDesembarqueHora(String hora) {
         this.desembarqueHora = hora;
     }
 
@@ -81,56 +78,56 @@ public class Evento {
 	/**
      * @return retorno da variável emb_lat
      */
-	public double getEmbarqueLatitude() {
+	public Integer getEmbarqueLatitude() {
 		return embarqueLatitude;
 	}
 
     /**
      * @param emb_lat inicializa a variavel emb_lat
      */
-	public void setEmbarqueLatitude(double emb_lat) {
+	public void setEmbarqueLatitude(Integer emb_lat) {
 		this.embarqueLatitude = emb_lat;
 	}
 
 	/**
      * @return retorno da variável emb_lon
      */
-	public double getEmbarqueLongitude() {
+	public Integer getEmbarqueLongitude() {
 		return embarqueLongitude;
 	}
 
     /**
      * @param emb_lon inicializa a variavel emb_lon
      */
-	public void setEmbarqueLongitude(double emb_lon) {
+	public void setEmbarqueLongitude(Integer emb_lon) {
 		this.embarqueLongitude = emb_lon;
 	}
 
 	/**
      * @return retorno da variável desembarqueLatitude
      */
-	public double getDesembarqueLatitude() {
+	public Integer getDesembarqueLatitude() {
 		return desembarqueLatitude;
 	}
 
     /**
      * @param desembarqueLatitude inicializa a variavel desembarqueLatitude
      */
-	public void setDesembarqueLatitude(double desembarqueLatitude) {
+	public void setDesembarqueLatitude(Integer desembarqueLatitude) {
 		this.desembarqueLatitude = desembarqueLatitude;
 	}
 
 	/**
      * @return retorno da variável desembarqueLongitude
      */
-	public double getDesembarqueLongitude() {
+	public Integer getDesembarqueLongitude() {
 		return desembarqueLongitude;
 	}
 	
     /**
      * @param desembarqueLongitude inicializa a variavel desembarqueLongitude
      */
-	public void setDesembarqueLongitude(double desembarqueLongitude) {
+	public void setDesembarqueLongitude(Integer desembarqueLongitude) {
 		this.desembarqueLongitude = desembarqueLongitude;
 	}
 
@@ -144,7 +141,7 @@ public class Evento {
     /**
      * @param TAG inicializa a variavel TAG
      */
-	public void setTAG(String tAG) { // TODO tudo minusculo
+	public void setTAG(String tAG) {
 		TAG = tAG;
 	}
 

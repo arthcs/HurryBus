@@ -7,6 +7,7 @@
 	<title>TelaTest</title>
 </head>
 <body>
+
 Usuario
 <!--Clicando em Cadastro vai para a pagina de CRUD\UsuarioCadastro-->
 <form action="CRUD\UsuarioCadastra.jsp" method="POST">
@@ -42,10 +43,10 @@ Eventos
 </form>
 
 <form action="CRUD\EventoAtualiza.jsp" method="POST">
-	<input type="submit" value="Alterar"/>
+	<input type="submit" value="Atualiza"/>
 </form>
 
-<form action="" method="POST">
+<form action="http://localhost:8080/HurryBus/rest/eventos" method="GET">
 	<input type="submit" value="Mostrar todos"/>
 </form>
 

@@ -43,14 +43,14 @@ public class EventoDao {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 int userId = rs.getInt("id_usuario");
-                String horaEmbarque = rs.getString("hora_embarque");
-                String horaDesembarque = rs.getString("hora_desembarque");
+                Timestamp horaEmbarque = rs.getTimestamp("hora_embarque");
+                Timestamp horaDesembarque = rs.getTimestamp("hora_desembarque");
                 String tag = rs.getString("tag");
                 int nota = rs.getInt("nota");
-                int embarqueLatitude = rs.getInt("emb_lat");
-                int embarqueLongitude = rs.getInt("emb_long");
-                int destinoLatitude = rs.getInt("des_lat");
-                int destinoLongitude = rs.getInt("des_long");
+                double embarqueLatitude = rs.getDouble("emb_lat");
+                double embarqueLongitude = rs.getDouble("emb_long");
+                double destinoLatitude = rs.getDouble("des_lat");
+                double destinoLongitude = rs.getDouble("des_long");
                 Usuario usuario = dao.buscaUsuarioPorId(userId);
                                 
                 Evento evento = new Evento();
@@ -81,12 +81,10 @@ public class EventoDao {
  	* @param evento  Objeto Evento que será removido
  	*/
     public void excluiEvento(Evento evento) {
-    	Connection con;
-        Statement stmt = null;
         try {
-            con = new ConectionFactory().getConnetion();
+            Connection con = new ConectionFactory().getConnetion();
             con.setAutoCommit(false);
-            stmt = con.createStatement();
+            Statement stmt = con.createStatement();
             String sql = "DELETE FROM evento WHERE id = '" + evento.getId() + "';";
             stmt.executeUpdate(sql);
             con.commit();
@@ -103,19 +101,20 @@ public class EventoDao {
      * @param evento  Objeto do tipo Evento com o evento que será cadastrado
      */
     public void insereEvento(Evento evento) {
+    	// TODO mover connection e statement para dentro do try
     	Connection con;
         Statement stmt = null;
         try {
             con = new ConectionFactory().getConnetion();
             con.setAutoCommit(false);
-            Timestamp hora = new Timestamp(System.currentTimeMillis());
             stmt = con.createStatement();
             String sql = "INSERT INTO EVENTO (ID_USUARIO,HORA_EMBARQUE,HORA_DESEMBARQUE,TAG,NOTA,EMB_LAT,EMB_LONG,DES_LAT,DES_LONG) "
-					+ "VALUES ('"+evento.getUsuario().getId()
+					+ "VALUES ('"
+            		+evento.getUsuario().getId()
 					+"','"
-					+hora
+					+evento.getEmbarqueHora()
 					+"', '"
-					+hora
+					+evento.getDesembarqueHora()
 					+"', '"
 					+evento.getTAG()
 					+"', '"
@@ -124,7 +123,11 @@ public class EventoDao {
 					+evento.getEmbarqueLatitude()
 					+"', '"
 					+evento.getEmbarqueLongitude()
-					+"', '0', '0');";
+					+"', '"
+					+evento.getDesembarqueLatitude()
+					+"', '"
+					+evento.getDesembarqueLongitude()
+					+"');";
 
             stmt.executeUpdate(sql);
             con.commit();
@@ -156,15 +159,15 @@ public class EventoDao {
 	        
 	        Evento evento = new Evento();
 	        evento.setUsuario(usuario);
-	        evento.setEmbarqueHora(rs.getString("HORA_EMBARQUE"));
-	        evento.setDesembarqueHora( rs.getString("hora_desembarque"));
+	        evento.setEmbarqueHora(rs.getTimestamp("HORA_EMBARQUE"));
+	        evento.setDesembarqueHora( rs.getTimestamp("hora_desembarque"));
 	        evento.setId(rs.getInt("id"));
 	        evento.setTAG(rs.getString("tag"));
 	        evento.setNota(rs.getInt("nota"));
-	        evento.setEmbarqueLatitude(rs.getInt("emb_lat"));
-	        evento.setEmbarqueLongitude(rs.getInt("emb_long"));
-	        evento.setDesembarqueLatitude(rs.getInt("des_lat"));
-	        evento.setDesembarqueLongitude(rs.getInt("des_long"));	        
+	        evento.setEmbarqueLatitude(rs.getDouble("emb_lat"));
+	        evento.setEmbarqueLongitude(rs.getDouble("emb_long"));
+	        evento.setDesembarqueLatitude(rs.getDouble("des_lat"));
+	        evento.setDesembarqueLongitude(rs.getDouble("des_long"));	        
 	        return evento;
 	        
 		} catch (SQLException e) {
@@ -194,7 +197,7 @@ public class EventoDao {
 						+"', DES_LONG = '"+evento.getDesembarqueLongitude()
 						+"', TAG = '"+evento.getTAG()
 						+"', NOTA = '"+evento.getNota()+"' where ID= '"+evento.getId()+"';";
-            
+
 //            String sql = "UPDATE EVENTO set HORA_DESEMBARQUE = '"+evento.getDesembarqueHora()+"' where ID="+evento.getId()+";"
 //            			+"UPDATE EVENTO set HORA_EMBARQUE = '"+evento.getEmbarqueHora()+"' where ID="+evento.getId()+";"
 //            			+"UPDATE EVENTO set EMB_LAT = '"+evento.getEmbarqueLatitude()+"' where ID="+evento.getId()+";"
@@ -253,14 +256,15 @@ public class EventoDao {
     	
     	if (obj.has("id"))evento.setId(obj.getInt("id"));
     	
-    	evento.setDesembarqueHora(obj.getString("horadesembarque"));
-    	evento.setEmbarqueHora(obj.getString("horaembarque"));
+    	//converter Timestamp em String
+    	//evento.setDesembarqueHora(obj.getString("horadesembarque"));
+    	//evento.setEmbarqueHora(obj.getString("horaembarque"));
     	evento.setTAG(obj.getString("tag"));
     	evento.setNota(obj.getInt("nota"));
-    	evento.setEmbarqueLongitude(obj.getInt("embarquelatitude"));
-    	evento.setEmbarqueLongitude(obj.getInt("embarquelongitude"));
-    	evento.setDesembarqueLatitude(obj.getInt("desembarquelatitude"));
-    	evento.setDesembarqueLongitude(obj.getInt("desembarquelongitude"));
+    	evento.setEmbarqueLatitude(obj.getDouble("embarquelatitude"));
+    	evento.setEmbarqueLongitude(obj.getDouble("embarquelongitude"));
+    	evento.setDesembarqueLatitude(obj.getDouble("desembarquelatitude"));
+    	evento.setDesembarqueLongitude(obj.getDouble("desembarquelongitude"));
 
 		return evento;
     }

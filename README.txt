@@ -1,11 +1,11 @@
 #HurryBus
-HurryBus é um projeto que se originou em sala de aula como um projeto para a cadeira de Estágio do curso de Ciência da Computação.
+HurryBus Ã© um projeto que se originou em sala de aula como um projeto para a cadeira de EstÃ¡gio do curso de CiÃªncia da ComputaÃ§Ã£o.
 
-No projeto existem duas classes que são usadas como modelo de objetos de Evento e de Usuário, essas classes se encontram no pacote “modelo”. Existe um pacote chamado de “dao” o qual contém o pacote “banco” responsável por manter a classe que faz a conexão com o banco de dados. Ainda dentro do pacote “dao” existem as classes “EventoDao” e “UsuarioDao”, nessas classes contém todos os métodos para manipulação do bando de dados.
+No projeto existem duas classes que sÃ£o usadas como modelo de objetos de Evento e de UsuÃ¡rio, essas classes se encontram no pacote â€œmodeloâ€. Existe um pacote chamado de â€œdaoâ€ o qual contÃ©m o pacote â€œbancoâ€ responsÃ¡vel por manter a classe que faz a conexÃ£o com o banco de dados. Ainda dentro do pacote â€œdaoâ€ existem as classes â€œEventoDaoâ€ e â€œUsuarioDaoâ€, nessas classes contÃ©m todos os mÃ©todos para manipulaÃ§Ã£o do bando de dados.
 
-Foram criadas duas tabelas no banco de dados, uma para guardar as informações do usuário e outra para guardar os dados de cada evento criado pelo usuário.
+Foram criadas duas tabelas no banco de dados, uma para guardar as informaÃ§Ãµes do usuÃ¡rio e outra para guardar os dados de cada evento criado pelo usuÃ¡rio.
 
-Foi implementado nas classes “EventoDao” e “UsuarioDao” métodos para tratarem objetos do tipo JSON e Strings do tipo JSON, podendo com elas executar operações no banco de dados
+Foi implementado nas classes â€œEventoDaoâ€ e â€œUsuarioDaoâ€ mÃ©todos para tratarem objetos do tipo JSON e Strings do tipo JSON, podendo com elas executar operaÃ§Ãµes no banco de dados
 
-Foi criado uma tela JSP de teste, a tela de teste pode direcionar para outras seis telas em JSP cada uma delas recebem dados por formulários e criando uma String JSON para fazer a comunicação com as classes que manipulam o banco de dados
-Criado as classes UsuarioHendler e EventoHendler, porem ainda com problemas no metodo que recebe uma String JSON pelo metodo POST para fazer a persistência.
+Foi criado uma tela JSP de teste, a tela de teste pode direcionar para outras seis telas em JSP cada uma delas recebem dados por formulÃ¡rios e criando uma String JSON para fazer a comunicaÃ§Ã£o com as classes que manipulam o banco de dados
+Criado as classes UsuarioHendler e EventoHendler, porem ainda com problemas no metodo que recebe uma String JSON pelo metodo POST para fazer a persistÃªncia.

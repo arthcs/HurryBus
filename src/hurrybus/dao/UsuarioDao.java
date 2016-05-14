@@ -72,8 +72,7 @@ public class UsuarioDao {
             rs.close();
             con.close();
             stmt.close();
-         
-            System.out.println("Busca com sucesso");
+
             return usuario;
         } catch (Exception e) {
             System.out.println("ID não encontrado\n");
