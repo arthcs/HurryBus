@@ -66,35 +66,10 @@ public class EventoHandler {
 	    */
 		@GET
 		@Produces(MediaType.APPLICATION_JSON)
-//		public Response getEventos() {
-//			EventoDao daoEventos = new EventoDao();
-//			List<Evento> evento = daoEventos.buscaTodosEventos();
-//			JSONArray json = new JSONArray();
-//				for (Evento e : evento) {
-//					 json.put(EventoDao.toJson(e));
-//				}	
-//			return Response.ok().entity(json.toString()).build();	
-//		}
-//		public Response getEventos() {
-//			EventoDao dao = new EventoDao();
-//
-//			Collection<Evento> ListaEventos = new ArrayList<Evento>();
-//			ListaEventos=dao.buscaTodosEventos();
-//
-//			JSONArray ListaJson = new JSONArray();			
-//			ListaJson.put(EventoDao.buscaTodosEventos());
-//			
-//			//JSONObject obj = new JSONObject();
-//			//obj.put("Eventos", ListaJson);
-//			//return Response.ok().entity(obj.toString()).build();
-//			
-//			return Response.ok().entity(ListaJson.toString()).build();
-//		}
-
 		public Response getEventos() {
-			EventoDao Dao = new EventoDao();
+			//EventoDao Dao = new EventoDao();
 
-			Collection<Evento> ListaEventos = Dao.buscaTodosEventos();
+			Collection<Evento> ListaEventos = EventoDao.buscaTodosEventos();
 			JSONArray ListaJson = new JSONArray();			
  
 			for (Evento e : ListaEventos)	 {

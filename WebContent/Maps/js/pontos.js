@@ -8,6 +8,14 @@
         				 		icon: 'img/marcador.png',
         				 map: map
                      });
+        			 var infowindow = new google.maps.InfoWindow(), marker;
+        			 
+        			 google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        			     return function() {
+        			         infowindow.setContent(evento.usuario.name);
+        			         infowindow.open(map, marker);
+        			     }
+        			 })(marker))
                   });
         	 });
         };

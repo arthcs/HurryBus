@@ -28,7 +28,7 @@ public class EventoDao {
      * 
      * @return	Retorna um List com todos os eventos
      */
-    public List<Evento> buscaTodosEventos() {
+    public static List<Evento> buscaTodosEventos() {
     	
     	ArrayList<Evento> eventos = new ArrayList<Evento>();
         try {
