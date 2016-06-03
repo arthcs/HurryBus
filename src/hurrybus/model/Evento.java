@@ -18,8 +18,7 @@ public class Evento {
 	private double embarqueLatitude, embarqueLongitude; 
 	private double desembarqueLatitude, desembarqueLongitude;
 	private Integer nota; 
-	// TODO renomar para minusculo
-	private String TAG;
+	private String tag;
 
 	
     /**
@@ -135,17 +134,17 @@ public class Evento {
 	}
 
 	/**
-     * @return retorno da variável TAG
+     * @return retorno da variável tag
      */
-	public String getTAG() {
-		return TAG;
+	public String getTag() {
+		return tag;
 	}
 
     /**
-     * @param TAG inicializa a variavel TAG
+     * @param tag inicializa a variavel tag
      */
-	public void setTAG(String tAG) { // TODO tudo minusculo
-		TAG = tAG;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	/**
@@ -167,7 +166,7 @@ public class Evento {
 	public String toString() {
 		return "Evento [Id=" + Id + ", idUser=" + usuario.getId() + ", embarqueHora=" + embarqueHora + ", desembarqueHora="
 				+ desembarqueHora + ", embarqueLatitude=" + embarqueLatitude + ", embarqueLongitude=" + embarqueLongitude + ", desembarqueLatitude=" + desembarqueLatitude
-				+ ", desembarqueLongitude=" + desembarqueLongitude + ", nota=" + nota + ", TAG=" + TAG + "]";
+				+ ", desembarqueLongitude=" + desembarqueLongitude + ", nota=" + nota + ", tag=" + tag + "]";
 	}
     
 }

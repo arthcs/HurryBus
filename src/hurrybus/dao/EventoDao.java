@@ -61,7 +61,7 @@ public class EventoDao {
                 evento.setNota(nota);
                 evento.setEmbarqueLatitude(embarqueLatitude);
                 evento.setEmbarqueLongitude(embarqueLongitude);
-                evento.setTAG(tag);
+                evento.setTag(tag);
                 evento.setId(id);
                 evento.setUsuario(usuario);                
                 
@@ -101,10 +101,9 @@ public class EventoDao {
      * @param evento  Objeto do tipo Evento com o evento que será cadastrado
      */
     public void insereEvento(Evento evento) {
-    	// TODO mover connection e statement para dentro do try
-    	Connection con;
-        Statement stmt = null;
         try {
+        	Connection con;
+            Statement stmt = null;
             con = new ConectionFactory().getConnetion();
             con.setAutoCommit(false);
             stmt = con.createStatement();
@@ -116,7 +115,7 @@ public class EventoDao {
 					+"', '"
 					+evento.getDesembarqueHora()
 					+"', '"
-					+evento.getTAG()
+					+evento.getTag()
 					+"', '"
 					+evento.getNota()
 					+"', '"
@@ -145,10 +144,10 @@ public class EventoDao {
      * @return    Retorna um Objeto do tipo Evento com o evento buscado
      */
     public Evento buscaEventoPorId(int id){
-    	Connection con;
-        Statement stmt = null;
-    	con = new ConectionFactory().getConnetion();
     	try {
+    		Connection con;
+            Statement stmt = null;
+        	con = new ConectionFactory().getConnetion();
 			con.setAutoCommit(false);
 			stmt = con.createStatement();
 	        ResultSet rs = stmt.executeQuery("SELECT * FROM EVENTO WHERE id = '" + id + "';");
@@ -162,7 +161,7 @@ public class EventoDao {
 	        evento.setEmbarqueHora(rs.getTimestamp("HORA_EMBARQUE"));
 	        evento.setDesembarqueHora( rs.getTimestamp("hora_desembarque"));
 	        evento.setId(rs.getInt("id"));
-	        evento.setTAG(rs.getString("tag"));
+	        evento.setTag(rs.getString("tag"));
 	        evento.setNota(rs.getInt("nota"));
 	        evento.setEmbarqueLatitude(rs.getDouble("emb_lat"));
 	        evento.setEmbarqueLongitude(rs.getDouble("emb_long"));
@@ -182,9 +181,9 @@ public class EventoDao {
      * @param evento  Objeto do tipo Evento com o evento que será atualizado
      */
     public void atualizarEvento(Evento evento){
-    	Connection con;
-        Statement stmt = null;
     	try {
+        	Connection con;
+            Statement stmt = null;
             con = new ConectionFactory().getConnetion();
             con.setAutoCommit(false);
             stmt = con.createStatement();
@@ -195,7 +194,7 @@ public class EventoDao {
 						+"', EMB_LONG = '"+evento.getEmbarqueLongitude()
 						+"', DES_LAT = '"+evento.getDesembarqueLatitude()
 						+"', DES_LONG = '"+evento.getDesembarqueLongitude()
-						+"', TAG = '"+evento.getTAG()
+						+"', TAG = '"+evento.getTag()
 						+"', NOTA = '"+evento.getNota()+"' where ID= '"+evento.getId()+"';";
 
 //            String sql = "UPDATE EVENTO set HORA_DESEMBARQUE = '"+evento.getDesembarqueHora()+"' where ID="+evento.getId()+";"
@@ -222,14 +221,14 @@ public class EventoDao {
      * @param evento  Objeto do tipo Evento com o evento que será transformado em String JSON
      * @return        StringJSON do objeto
      */
-    public String toJson (Evento evento){
+    public static String toJson (Evento evento){
     	JSONObject my_obj = new JSONObject();
 
     	my_obj.put("idusuario",evento.getUsuario().getId());
     	my_obj.put("horaembarque",evento.getEmbarqueHora());
     	my_obj.put("horadesembarque",evento.getDesembarqueHora());
     	my_obj.put("id",evento.getId());
-    	my_obj.put("tag",evento.getTAG());
+    	my_obj.put("tag",evento.getTag());
     	my_obj.put("nota",evento.getNota());
     	my_obj.put("embarquelatitude",evento.getEmbarqueLatitude());
     	my_obj.put("embarquelongitude",evento.getEmbarqueLongitude());
@@ -259,7 +258,7 @@ public class EventoDao {
     	//converter Timestamp em String
     	//evento.setDesembarqueHora(obj.getString("horadesembarque"));
     	//evento.setEmbarqueHora(obj.getString("horaembarque"));
-    	evento.setTAG(obj.getString("tag"));
+    	evento.setTag(obj.getString("tag"));
     	evento.setNota(obj.getInt("nota"));
     	evento.setEmbarqueLatitude(obj.getDouble("embarquelatitude"));
     	evento.setEmbarqueLongitude(obj.getDouble("embarquelongitude"));

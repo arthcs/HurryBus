@@ -23,11 +23,11 @@ public class UsuarioDao {
     * @return	Retorna um List com todos os Usuários
     */
     public List<Usuario> buscarTodosUsuarios() {
-        Connection con;
-        Statement stmt;
     	ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-        con = new ConectionFactory().getConnetion();
         try {
+        	Connection con;
+            Statement stmt;
+            con = new ConectionFactory().getConnetion();
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM USUARIOS");
             while (rs.next()) {                
@@ -54,9 +54,9 @@ public class UsuarioDao {
     * @return    Retorna um Objeto do Usuário buscado
     */
     public Usuario buscaUsuarioPorId(int id) {
-        Connection con;
-        Statement stmt;
         try {
+            Connection con;
+            Statement stmt;
         	con = new ConectionFactory().getConnetion();
         	con.setAutoCommit(false);
             stmt = con.createStatement();
@@ -87,9 +87,9 @@ public class UsuarioDao {
  	* @param usuario  Objeto do usuário que será removido
  	*/
     public void excluiUsuario(Usuario usuario) {
-        Connection con;
-        Statement stmt;
         try {
+            Connection con;
+            Statement stmt;
         	con = new ConectionFactory().getConnetion();
         	con.setAutoCommit(false);
             stmt = con.createStatement();
@@ -111,9 +111,9 @@ public class UsuarioDao {
     * @param usuario  Objeto do usuário que será atualizado
     */
     public void atualizaUsuario(Usuario usuario) {
-        Connection con;
-        Statement stmt;
         try {
+            Connection con;
+            Statement stmt;
             con = new ConectionFactory().getConnetion();
             con.setAutoCommit(false);
             stmt = con.createStatement();
@@ -138,9 +138,9 @@ public class UsuarioDao {
     * @param usuario  Objeto do usuário que será cadastrado
     */
     public void insereUsuario(Usuario usuario) {
-        Connection con;
-        Statement stmt;
         try {
+            Connection con;
+            Statement stmt;
             con = new ConectionFactory().getConnetion();       
             con.setAutoCommit(false);
             stmt = con.createStatement();

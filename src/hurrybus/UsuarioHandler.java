@@ -35,17 +35,15 @@ public class UsuarioHandler {
    /**
     * Insere um novo Usuário na tabela Usuarios
     * 
-    * @param StringJSON  	String com os dados do usuáio
+    * @param usuarioJson  	String com os dados do usuáio
     * @return    			Retorna um Response para página jsp
     * @see UsuarioDao
     */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response insereUsuario(String StringJSON){
-		// TODO renomear StringJson para usuarioJson
+	public Response insereUsuario(String usuarioJson){
 		UsuarioDao dao = new UsuarioDao();
-		Usuario user = dao.fromJson(StringJSON);
+		Usuario user = dao.fromJson(usuarioJson);
 		dao.insereUsuario(user);
 		return Response.ok().build();
 	}
@@ -61,15 +59,15 @@ public class UsuarioHandler {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUsuarios() {
 		UsuarioDao dao = new UsuarioDao();
+
+		Collection<Usuario> listaUsers = new ArrayList<Usuario>();
+		listaUsers=dao.buscarTodosUsuarios();
 		
-		// TODO variaveis locais comecam com letra minuscula
-		Collection<Usuario> ListaUsers = new ArrayList<Usuario>();
-		ListaUsers=dao.buscarTodosUsuarios();
+		JSONArray listaJson = new JSONArray();
+		listaJson.put(listaUsers);
 		
-		JSONArray ListaJson = new JSONArray();
-		ListaJson.put(ListaUsers);
 		JSONObject obj = new JSONObject();
-		obj.put("usuarios", ListaJson);
+		obj.put("usuarios", listaJson);
 
 		return Response.ok().entity(obj.toString()).build();
 	}
@@ -77,16 +75,16 @@ public class UsuarioHandler {
    /**
     * Atualiza um Usuário na tabela Usuarios
     * 
-    * @param StringJSON  	String com os dados do usuáio
+    * @param usuarioJson  	String com os dados do usuáio
     * @return    			Retorna um Response para página jsp
     * @see UsuarioDao
     */
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response atualizaUsuario(String StringJSON){
+	public Response atualizaUsuario(String usuarioJson){
 		UsuarioDao dao = new UsuarioDao();
-		Usuario user = dao.fromJson(StringJSON);
+		Usuario user = dao.fromJson(usuarioJson);
 		dao.atualizaUsuario(user);
 		return Response.ok().build();	
 	}
@@ -104,9 +102,7 @@ public class UsuarioHandler {
 	@Produces(MediaType.APPLICATION_JSON)
     public Response excluiUsuario(@PathParam("id") Integer id) {
 		UsuarioDao dao = new UsuarioDao();
-		Usuario user = new Usuario();
-		// TODO nao criar duas isntancias de Usuario
-		user = dao.buscaUsuarioPorId(id);
+		Usuario user = dao.buscaUsuarioPorId(id);
 		dao.excluiUsuario(user);
 		return Response.ok().build();	
 	}
@@ -124,9 +120,7 @@ public class UsuarioHandler {
 	@Produces(MediaType.APPLICATION_JSON)
 	 public Response buscaUsuarioId(@PathParam("id") Integer id) {
 		UsuarioDao dao = new UsuarioDao();
-		Usuario user = new Usuario();
-		
-		user=dao.buscaUsuarioPorId(id);
+		Usuario user = dao.buscaUsuarioPorId(id);
 		String StringJSON = dao.toJson(user);
 		return Response.ok().entity(StringJSON).build();
 	}

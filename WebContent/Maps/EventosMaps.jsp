@@ -16,7 +16,7 @@
  		<script src="js\jquery.min.js"></script>
  		
         <!-- Maps API Javascript -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClAhsFVXpLuLSqQ2eOxeH7YWVfvdLt5JA&callback=initMap"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClAhsFVXpLuLSqQ2eOxeH7YWVfvdLt5JA&callback"></script>
         
         <!--  Pontos dos Eventos em Json  -->
         <script src="js\pontos.js"></script>
@@ -24,7 +24,7 @@
         <!-- Arquivo de inicialização do mapa -->
         <script src="js\map.js"></script>
         
-    </body>
+</body>
 
 </body>
 </html>

@@ -3,6 +3,7 @@ package hurrybus;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -65,19 +66,44 @@ public class EventoHandler {
 	    */
 		@GET
 		@Produces(MediaType.APPLICATION_JSON)
-		public Response getEventos() {
-			EventoDao dao = new EventoDao();
-			
-			Collection<Evento> ListaEventos = new ArrayList<Evento>();
-			ListaEventos=dao.buscaTodosEventos();
+//		public Response getEventos() {
+//			EventoDao daoEventos = new EventoDao();
+//			List<Evento> evento = daoEventos.buscaTodosEventos();
+//			JSONArray json = new JSONArray();
+//				for (Evento e : evento) {
+//					 json.put(EventoDao.toJson(e));
+//				}	
+//			return Response.ok().entity(json.toString()).build();	
+//		}
+//		public Response getEventos() {
+//			EventoDao dao = new EventoDao();
+//
+//			Collection<Evento> ListaEventos = new ArrayList<Evento>();
+//			ListaEventos=dao.buscaTodosEventos();
+//
+//			JSONArray ListaJson = new JSONArray();			
+//			ListaJson.put(EventoDao.buscaTodosEventos());
+//			
+//			//JSONObject obj = new JSONObject();
+//			//obj.put("Eventos", ListaJson);
+//			//return Response.ok().entity(obj.toString()).build();
+//			
+//			return Response.ok().entity(ListaJson.toString()).build();
+//		}
 
+		public Response getEventos() {
+			EventoDao Dao = new EventoDao();
+
+			Collection<Evento> ListaEventos = Dao.buscaTodosEventos();
 			JSONArray ListaJson = new JSONArray();			
-			ListaJson.put(ListaEventos);
+ 
+			for (Evento e : ListaEventos)	 {
+				ListaJson.put(EventoDao.toJson(e));
+    			}
+    	
+			System.out.println(ListaJson.toString());
 			
-			JSONObject obj = new JSONObject();
-			obj.put("Eventos", ListaJson);
-			return Response.ok().entity(obj.toString()).build();
-			//return Response.ok().entity(ListaJson.toString()).build();
+			return Response.ok().entity(ListaJson.toString()).build();
 		}
 		
 		/**
@@ -90,17 +116,41 @@ public class EventoHandler {
 		@PUT
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.APPLICATION_JSON)
-		public Response atualizaEvento(String StringJSON){
+		public Response atualizaEvento(String eventoJSON){
 			EventoDao dao = new EventoDao();
 			Evento evento = new Evento();
 			
-			evento = dao.fromJson(StringJSON);
+			evento = dao.fromJson(eventoJSON);
 			dao.atualizarEvento(evento);
 			
 			System.out.println(evento.toString());
 			
 			return Response.ok().build();	
 			}
+		
+		/**
+		* Busca um Evento na tabela Eventos por id
+		* 
+		* @param id		  	Um inteiro com o id do evento a buscado
+		* @return    		Retorna um Response para página jsp com uma StringJSON do evento
+		* @see EventoDao
+		*/
+		@GET
+		@Path("/{id}")
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.APPLICATION_JSON)
+		public Response buscaEventoId(@PathParam("id") Integer id) {
+			EventoDao dao = new EventoDao();
+			Evento evento = dao.buscaEventoPorId(id);
+			//String StringJSON = dao.toJson(evento);
+			
+			JSONObject obj = new JSONObject();
+			obj.put("Evento", dao.toJson(evento));
+			return Response.ok().entity(obj.toString()).build();
+			
+			//return Response.serverError().entity(StringJSON).build();
+			}
+		
 		
 		/**
 		* Remove um Evento da tabela Eventos

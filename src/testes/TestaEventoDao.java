@@ -30,7 +30,7 @@ public class TestaEventoDao {
 		
 		evt.setUsuario(u);
 		evt.setNota(10);
-		evt.setTAG("legal");
+		evt.setTag("legal");
 		evt.setEmbarqueLatitude(487);
 		evt.setEmbarqueLongitude(10029);
 		evt.setDesembarqueLatitude(000123);
@@ -52,14 +52,14 @@ public class TestaEventoDao {
 //		System.out.println(busca.toString());
 		
 		//---------Atualiza----------
-		evt.setTAG("atualizado");
+		evt.setTag("atualizado");
 		evt.setDesembarqueHora(hora);
 		dao.atualizarEvento(evt); //problemas pois no banco é Timestamp esta passando uma string
 		
 		//----teste JSON
 //		System.out.println(evt.toString());
 //		
-//		evt.setTAG("update");
+//		evt.setTag("update");
 //		
 //		String json_string = dao.toJson(evt);
 //		System.out.println("Obj to String JSON="+json_string);

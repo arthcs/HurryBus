@@ -50,4 +50,8 @@ Eventos
 	<input type="submit" value="Mostrar todos"/>
 </form>
 
+<form action="CRUD\EventoBuscaId.jsp" method="GET">
+	<input type="submit" value="Buscar por ID"/>
+</form>
+
 </body>

@@ -30,7 +30,7 @@ public class EventoJson {
     	//evt.setDesembarqueHora(my_obj.getString("HORA_DESEMBARQUE"));; // Não aparece a hora na String Json
     	//evt.setEmbarqueHora(my_obj.getString("HORA_EMBARQUE"));;
     	
-    	evt.setTAG(my_obj.getString("TAG"));
+    	evt.setTag(my_obj.getString("TAG"));
     	evt.setNota(my_obj.getInt("NOTA"));
     	evt.setEmbarqueLatitude(my_obj.getInt("EMB_LAT"));
     	evt.setEmbarqueLongitude(my_obj.getInt("EMB_LONG"));
@@ -57,7 +57,7 @@ public class EventoJson {
     	//evt.setDesembarqueHora(my_obj.getString("HORA_DESEMBARQUE"));
     	//evt.setEmbarqueHora(my_obj.getString("HORA_EMBARQUE"));
     	
-    	evt.setTAG(my_obj.getString("TAG"));
+    	evt.setTag(my_obj.getString("TAG"));
     	evt.setNota(my_obj.getInt("NOTA"));
     	evt.setEmbarqueLatitude(my_obj.getInt("EMB_LAT"));
     	evt.setEmbarqueLongitude(my_obj.getInt("EMB_LONG"));
@@ -85,7 +85,7 @@ public class EventoJson {
     	//evt.setDesembarqueHora(my_obj.getString("HORA_DESEMBARQUE")); // Não aparece a hora na String Json
     	//evt.setEmbarqueHora(my_obj.getString("HORA_EMBARQUE"));
     	
-    	evt.setTAG(my_obj.getString("TAG"));
+    	evt.setTag(my_obj.getString("TAG"));
     	evt.setNota(my_obj.getInt("NOTA"));
     	evt.setEmbarqueLatitude(my_obj.getInt("EMB_LAT"));
     	evt.setEmbarqueLongitude(my_obj.getInt("EMB_LONG"));

@@ -1,7 +1,6 @@
 package testes;
 
 import org.json.JSONObject;
-
 import hurrybus.dao.UsuarioDao;
 import hurrybus.model.Usuario;
 
