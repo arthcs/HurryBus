@@ -34,7 +34,36 @@ import hurrybus.model.Usuario;
 
 @Path("/eventos")
 public class EventoHandler {
-	 	/**
+	
+	
+	/**
+	* Busca os eventos de um usuario
+	* 
+	* @param StringJSON  	String com os dados do usuario
+	* @return    			Retorna um Response para página jsp
+	* @see EventoDao
+	*/
+	@POST
+	@Path("/usuarioeventos")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response buscaTodosEventosPorUsuario(String usuarioJSON){
+		System.out.println("OK");
+		UsuarioDao userdao = new UsuarioDao();
+		Usuario user = userdao.fromJson(usuarioJSON);
+		
+		Collection<Evento> ListaEventos = EventoDao.buscaTodosEventosPorUsuario(user);
+		JSONArray ListaJson = new JSONArray();			
+
+		for (Evento evento : ListaEventos)	 {
+			ListaJson.put(EventoDao.toJson(evento));
+			}
+		System.out.println(ListaJson.toString());
+		return Response.ok().entity(ListaJson.toString()).build();
+	}
+	 	
+	
+		/**
 	    * Insere um novo Evento na tabela Eventos
 	    * 
 	    * @param StringJSON  	String com os dados do Evento
@@ -44,12 +73,11 @@ public class EventoHandler {
 		@POST
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.APPLICATION_JSON)
-		public Response insereEvento(String StringJSON){
+		public Response insereEvento(String eventoJSON){
 			Timestamp hora = new Timestamp(System.currentTimeMillis());
 			EventoDao dao = new EventoDao();
-			Evento evento = new Evento();
+			Evento evento = dao.fromJson(eventoJSON);
 			
-			evento = dao.fromJson(StringJSON);
 			evento.setEmbarqueHora(hora);
 			evento.setDesembarqueHora(hora);
 			dao.insereEvento(evento);
@@ -67,17 +95,20 @@ public class EventoHandler {
 		@GET
 		@Produces(MediaType.APPLICATION_JSON)
 		public Response getEventos() {
-			//EventoDao Dao = new EventoDao();
+			EventoDao Dao = new EventoDao();
 
-			Collection<Evento> ListaEventos = EventoDao.buscaTodosEventos();
+			Collection<Evento> ListaEventos = Dao.buscaTodosEventos();
 			JSONArray ListaJson = new JSONArray();			
  
-			for (Evento e : ListaEventos)	 {
-				ListaJson.put(EventoDao.toJson(e));
+			for (Evento evento : ListaEventos)	 {
+				ListaJson.put(EventoDao.toJson(evento));
     			}
-    	
-			System.out.println(ListaJson.toString());
+//			JSONObject obj = new JSONObject();
+//			obj.put("Eventos", ListaJson);
 			
+			//System.out.println(ListaEventos.toString());
+			//System.out.println(ListaJson.toString());
+			//return Response.ok().entity(obj.toString()).build();
 			return Response.ok().entity(ListaJson.toString()).build();
 		}
 		
@@ -120,10 +151,8 @@ public class EventoHandler {
 			//String StringJSON = dao.toJson(evento);
 			
 			JSONObject obj = new JSONObject();
-			obj.put("Evento", dao.toJson(evento));
+			obj.put("Evento", EventoDao.toJson(evento));
 			return Response.ok().entity(obj.toString()).build();
-			
-			//return Response.serverError().entity(StringJSON).build();
 			}
 		
 		
@@ -134,16 +163,16 @@ public class EventoHandler {
 		* @return    		Retorna um Response para página jsp
 		* @see UsuarioDao
 		*/
-			@DELETE
-		    @Path("/{id}")
-		    @Consumes(MediaType.APPLICATION_JSON)
-			@Produces(MediaType.APPLICATION_JSON)
-		    public Response excluiEvento(@PathParam("id") Integer id) {
-				EventoDao dao = new EventoDao();
-				Evento evento = dao.buscaEventoPorId(id);
-				
-				dao.excluiEvento(evento);
-				System.out.println("ok"+id);
-				return Response.ok().build();	
+		@DELETE
+	    @Path("/{id}")
+	    @Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.APPLICATION_JSON)
+	    public Response excluiEvento(@PathParam("id") Integer id) {
+			EventoDao dao = new EventoDao();
+			Evento evento = dao.buscaEventoPorId(id);
+			
+			dao.excluiEvento(evento);
+			System.out.println("ok"+id);
+			return Response.ok().build();	
 			}
 }

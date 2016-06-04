@@ -1,10 +1,10 @@
         function carregarPontos() {
-        	$.getJSON('EventoPontos.json', function(eventos) {
-        	//$.getJSON('http://localhost:8080/HurryBus/rest/eventos/20', function(eventos) {
+        	//$.getJSON('EventoPontos.json', function(eventos) {
+        	$.getJSON('http://localhost:8080/HurryBus/rest/eventos', function(eventos) {
         		$.each(eventos, function(index, evento) {  
         			 var marker=new google.maps.Marker({
-        				 		position: new google.maps.LatLng(evento.embarqueLatitude, evento.embarqueLongitude),
-        				 		title: evento.TAG,
+        				 		position: new google.maps.LatLng(evento.embarquelatitude, evento.embarquelongitude),
+        				 		title: evento.tag,
         				 		icon: 'img/marcador.png',
         				 map: map
                      });
@@ -12,7 +12,7 @@
         			 
         			 google.maps.event.addListener(marker, 'click', (function(marker, i) {
         			     return function() {
-        			         infowindow.setContent(evento.usuario.name);
+        			         infowindow.setContent(evento.name);
         			         infowindow.open(map, marker);
         			     }
         			 })(marker))

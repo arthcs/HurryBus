@@ -2,6 +2,8 @@ package testes;
 
 import java.io.IOException;
 
+import org.json.JSONObject;
+
 import hurrybus.UsuarioHandler;
 import hurrybus.dao.UsuarioDao;
 import hurrybus.model.Usuario;
@@ -39,11 +41,11 @@ public class TestaUsuarioDao {
 		 
 		 //----teste do String json
 		 arthur.setName("Sacarlet alterado");
-		 String JsonUser = dao.toJson(arthur);
+		 JSONObject JsonUser = UsuarioDao.toJson(arthur);
 		 System.out.println("Obj para StringJSON="+JsonUser);
 		 UsuarioJson Json = new UsuarioJson();
 		 //Json.atualizaJson(JsonUser);
-		 Json.excluiJson(JsonUser);
+		 //Json.excluiJson(JsonUser);
 		 //Json.cadastraJson(JsonUser);
 		 
 		 //----String json para Obj Usuario

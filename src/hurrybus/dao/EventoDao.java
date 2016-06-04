@@ -22,13 +22,63 @@ import org.json.JSONObject;
  * 
  */
 public class EventoDao {
-   
+	/**
+     * Retorna todos os eventos de um usuario
+     * 
+     * @return	Retorna um List com todos os eventos do usuario
+     */
+    public static List<Evento> buscaTodosEventosPorUsuario(Usuario user) {
+    	ArrayList<Evento> UsuarioEventos = new ArrayList<Evento>();
+    	UsuarioDao userDao = new UsuarioDao();
+    	
+    	try {
+    		Connection con = new ConectionFactory().getConnetion();
+            Statement stmt = null;
+
+			con.setAutoCommit(false);
+			stmt = con.createStatement();
+	        ResultSet rs = stmt.executeQuery("SELECT * FROM EVENTO WHERE id_usuario = '" + user.getId() + "';");
+	        while (rs.next()) {
+                int id = rs.getInt("id");
+                Timestamp horaEmbarque = rs.getTimestamp("hora_embarque");
+                Timestamp horaDesembarque = rs.getTimestamp("hora_desembarque");
+                String tag = rs.getString("tag");
+                int nota = rs.getInt("nota");
+                double embarqueLatitude = rs.getDouble("emb_lat");
+                double embarqueLongitude = rs.getDouble("emb_long");
+                double destinoLatitude = rs.getDouble("des_lat");
+                double destinoLongitude = rs.getDouble("des_long");
+                                
+                Evento evento = new Evento();
+                evento.setDesembarqueLatitude(destinoLatitude);
+                evento.setDesembarqueLongitude(destinoLongitude);
+                evento.setDesembarqueHora(horaDesembarque);
+                evento.setEmbarqueHora(horaEmbarque);
+                evento.setNota(nota);
+                evento.setEmbarqueLatitude(embarqueLatitude);
+                evento.setEmbarqueLongitude(embarqueLongitude);
+                evento.setTag(tag);
+                evento.setId(id); 
+                evento.setUsuario(userDao.buscaUsuarioPorId(user.getId()));
+           
+                UsuarioEventos.add(evento);
+	        }
+	        stmt.close();
+    	}catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+    		}
+    	
+    	return UsuarioEventos;
+    }
+	
+
     /**
      * Mostra todos os eventos cadastrados
      * 
      * @return	Retorna um List com todos os eventos
      */
-    public static List<Evento> buscaTodosEventos() {
+    public List<Evento> buscaTodosEventos() {
     	
     	ArrayList<Evento> eventos = new ArrayList<Evento>();
         try {
@@ -63,8 +113,7 @@ public class EventoDao {
                 evento.setEmbarqueLongitude(embarqueLongitude);
                 evento.setTag(tag);
                 evento.setId(id);
-                evento.setUsuario(usuario);                
-                
+                evento.setUsuario(usuario);  
                 eventos.add(evento);
             }
             stmt.close();
@@ -221,10 +270,17 @@ public class EventoDao {
      * @param evento  Objeto do tipo Evento com o evento que será transformado em String JSON
      * @return        StringJSON do objeto
      */
-    public static String toJson (Evento evento){
+    public static JSONObject toJson (Evento evento){
     	JSONObject my_obj = new JSONObject();
+    	Usuario	user = evento.getUsuario();
 
-    	my_obj.put("idusuario",evento.getUsuario().getId());
+    	//my_obj.put("usuario",evento.getUsuario());
+    	//usuario
+    	my_obj.put("name",user.getName());
+    	my_obj.put("senha",user.getSenha());
+    	my_obj.put("email",user.getEmail());
+    	my_obj.put("id",user.getId());
+    	
     	my_obj.put("horaembarque",evento.getEmbarqueHora());
     	my_obj.put("horadesembarque",evento.getDesembarqueHora());
     	my_obj.put("id",evento.getId());
@@ -235,8 +291,8 @@ public class EventoDao {
     	my_obj.put("desembarquelatitude",evento.getDesembarqueLatitude());
     	my_obj.put("desembarquelongitude",evento.getDesembarqueLongitude());
     	
-    	String json_evt = my_obj.toString();
-		return json_evt;
+    	//String json_evt = my_obj.toString();
+		return my_obj;
     }
     
     /**

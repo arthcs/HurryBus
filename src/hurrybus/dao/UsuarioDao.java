@@ -2,7 +2,6 @@ package hurrybus.dao;
 import hurrybus.dao.banco.ConectionFactory;
 import hurrybus.model.Usuario;
 import java.sql.*;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +16,32 @@ import org.json.JSONObject;
  * 
  */
 public class UsuarioDao {
+	
+	/**
+	 * Mostra todos os Usuarios cadastrados
+	 * 
+	 * @return	Retorna um List com todos os Usuários
+	 */
+	public boolean verificaUsuario(Usuario usuarios ) {
+		Connection connection = new ConectionFactory().getConnetion();
+		
+		String sql = "select * from usuarios where nome = ? and senha = ?";
+		try {
+		PreparedStatement ps = connection.prepareStatement(sql);
+		ps.setString(1, usuarios.getName());
+		ps.setString(2, usuarios.getSenha());
+		ResultSet resultset = ps.executeQuery();
+		if (resultset.next()){
+			return true;
+		  	}
+		  }
+		  catch (SQLException e){  
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+		  }
+		  return false;
+		}
+	
+	
    /**
     * Mostra todos os Usuarios cadastrados
     * 
@@ -164,7 +189,7 @@ public class UsuarioDao {
     * @param u  Objeto Usuário que será transformado em String JSON
     * @return   StringJSON do objeto
     */
-    public String toJson (Usuario u){
+    public static JSONObject toJson (Usuario u){
     	JSONObject my_obj = new JSONObject();
     	
     	my_obj.put("id", u.getId());
@@ -172,8 +197,8 @@ public class UsuarioDao {
         my_obj.put("email",u.getEmail());
         my_obj.put("senha",u.getSenha());
     	
-    	String json_user = my_obj.toString();
-		return json_user;
+    	//String json_user = my_obj.toString();
+		return my_obj;
     }
     
    /**

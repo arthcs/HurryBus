@@ -121,8 +121,34 @@ public class UsuarioHandler {
 	 public Response buscaUsuarioId(@PathParam("id") Integer id) {
 		UsuarioDao dao = new UsuarioDao();
 		Usuario user = dao.buscaUsuarioPorId(id);
-		String StringJSON = dao.toJson(user);
-		return Response.ok().entity(StringJSON).build();
+		JSONObject StringJSON = UsuarioDao.toJson(user);
+		return Response.ok().entity(StringJSON.toString()).build();
 	}
 
+	
+	/**
+	* Verifica um usuario no banco de dados
+	* 
+	* @param usuarioJson 	String com os dados do usuáio
+	* @return    			Retorna um Response para página jsp
+	* @see UsuarioDao
+	*/
+	//TODO renomear StringJson para usuarioJson
+	@POST
+	@Path("/login")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response verificaUsuario(String usuarioJson)  {
+		UsuarioDao dao = new UsuarioDao();
+		Usuario user = dao.loginJson(usuarioJson);
+		if (dao.verificaUsuario(user)){
+		    System.out.println("ok" );
+		    return Response.status(200).build();
+	
+		} else {
+			System.out.println("error");
+		    return Response.status(404).build();		
+			}
+	}
+	
 }
