@@ -220,4 +220,24 @@ public class UsuarioDao {
     	
 		return user;
     }
+    
+    /**
+     * Recebe uma String JSON e transforma em um objeto do tipo Usuario
+     * 
+     * @param json	String JSON que será transformada em um ojeto do tipo Usuario
+     * @return    	Retorna um Objeto do tipo Usuario da StringJSON
+     */
+     public Usuario loginJson(String json){
+     	
+     	JSONObject my_obj = new JSONObject(json);
+     	Usuario user = new Usuario();
+     	
+     	if (my_obj.has("id"))user.setId(my_obj.getInt("id"));
+     		
+     	user.setName(my_obj.getString("nome"));
+     	//user.setEmail(my_obj.getString("email"));
+     	user.setSenha(my_obj.getString("senha"));
+     	
+ 		return user;
+     }
 }
