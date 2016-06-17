@@ -34,8 +34,6 @@ import hurrybus.model.Usuario;
 
 @Path("/eventos")
 public class EventoHandler {
-	
-	
 	/**
 	* Busca os eventos de um usuario
 	* 

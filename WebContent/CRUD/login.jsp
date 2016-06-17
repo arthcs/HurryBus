@@ -75,7 +75,7 @@
             <div class="panel-heading" style="display: flex; justify-content: center; align-items: center; overflow: auto;">
               <h3 class="panel-title">Atualizações</h3>
             </div>
-            <div id="mapa" style="height: 500px; width: 100%; margin: 0 auto; padding: 20px;display: flex; justify-content: center; align-items: center; resize: both; overflow: auto;">
+            <div id="mapa" style="height: 100%; width: 100%; margin: 0 auto; padding: 20px;position:absolute; justify-content: center; align-items: center; resize: both; overflow: auto;">
     			<!--  biblioteca jQuery  -->
  				<script src="js\jquery.min.js"></script>
    				<!-- Maps API Javascript -->

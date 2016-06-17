@@ -11,8 +11,8 @@
 <body>
 
  <!--<div id="mapa" style="height: 500px; width: 700px">-->
- <div id="mapa" style="height: 500px; width: 700px">
- </div>
+<div id="mapa" style="height: 500px; width: 700px">
+</div>
  		<!--  biblioteca jQuery  -->
  		<script src="js\jquery.min.js"></script>
  		
