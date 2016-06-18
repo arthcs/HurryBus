@@ -5,7 +5,7 @@
         			 var marker=new google.maps.Marker({
         				 		position: new google.maps.LatLng(evento.embarquelatitude, evento.embarquelongitude),
         				 		title: evento.tag,
-        				 		icon: 'imagem/marcador.png',
+        				 		icon: 'imagem/Marcador2.png',
         				 map: map
                      });
         			 var infowindow = new google.maps.InfoWindow(), marker;

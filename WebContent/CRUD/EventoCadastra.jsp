@@ -159,11 +159,6 @@
 								placeholder="ID do Usuário">
 						</div>
 
-
-
-
-
-
 						<div id="embarquelatitude" style="margin-bottom: 25px"
 							class="input-group">
 							<span class="input-group-addon"><i
@@ -172,7 +167,6 @@
 								class="form-control" placeholder="Embarque Latitude">
 							<button class="small" onclick="preencher()" type="button">Gerar
 								Latitude</button>
-
 						</div>
 
 						<div style="margin-bottom: 25px" class="input-group">
@@ -215,12 +209,6 @@
 								type="text" class="form-control" placeholder="TAG">
 						</div>
 
-
-
-
-
-
-
 						<div style="margin-top: 10px" class="form-group">
 							<!-- Button -->
 
@@ -248,37 +236,6 @@
 			</div>
 		</div>
 	</div>
-
-
-	<%
-		//recebe os valores digitados
-		//	String idusuario = request.getParameter("idusuario");
-		//	String id = request.getParameter("id");
-		//	String HoraEmbarque = request.getParameter("horaembarque");
-		//	String HoraDesembarque = request.getParameter("horadesembarque");
-		//	String EmbarqueLatitude = request.getParameter("embarquelatitude");
-		//	String EmbarqueLongitude = request.getParameter("embarquelongitude");
-		//	String DesembarqueLatitude = request.getParameter("desembarquelatitude");
-		//	String DesembarqueLongitude = request.getParameter("desembarquelongitude");
-		//	String Nota = request.getParameter("nota");
-		//	String TAG = request.getParameter("tag");
-
-		//JSONObject obj = new JSONObject();
-
-		//obj.put("idusuario",idusuario);
-		//obj.put("id", id);
-		///obj.put("horaembarque",HoraEmbarque);
-		//obj.put("horadesembarque", HoraDesembarque);
-		//obj.put("embarquelatitude", EmbarqueLatitude);
-		//obj.put("embarquelongitude",EmbarqueLongitude);
-		//obj.put("desembarquelatitude",DesembarqueLatitude);
-		//obj.put("desembarquelongitude",DesembarqueLongitude);
-		//obj.put("nota",Nota);
-		//obj.put("tag",TAG);
-
-		//out.println(obj.toString());
-	%>
-
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script

@@ -316,10 +316,17 @@ public class EventoDao {
     	//evento.setEmbarqueHora(obj.getString("horaembarque"));
     	evento.setTag(obj.getString("tag"));
     	evento.setNota(obj.getInt("nota"));
-    	evento.setEmbarqueLatitude(obj.getDouble("embarquelatitude"));
-    	evento.setEmbarqueLongitude(obj.getDouble("embarquelongitude"));
-    	evento.setDesembarqueLatitude(obj.getDouble("desembarquelatitude"));
-    	evento.setDesembarqueLongitude(obj.getDouble("desembarquelongitude"));
+    	
+    	evento.setEmbarqueLatitude(Double.parseDouble(obj.getString("embarquelatitude")));
+    	evento.setEmbarqueLongitude(Double.parseDouble(obj.getString("embarquelongitude")));
+    	evento.setDesembarqueLatitude(Double.parseDouble(obj.getString("desembarquelatitude")));
+    	evento.setDesembarqueLongitude(Double.parseDouble(obj.getString("desembarquelongitude")));
+
+    	
+//    	evento.setEmbarqueLatitude(obj.getDouble("embarquelatitude"));
+//    	evento.setEmbarqueLongitude(obj.getDouble("embarquelongitude"));
+//    	evento.setDesembarqueLatitude(obj.getDouble("desembarquelatitude"));
+//    	evento.setDesembarqueLongitude(obj.getDouble("desembarquelongitude"));
 
 		return evento;
     }

@@ -41,14 +41,14 @@ public class EventoHandler {
 	* @return    			Retorna um Response para página jsp
 	* @see EventoDao
 	*/
-	@POST
-	@Path("/usuarioeventos")
+	@GET
+	@Path("/usuarioeventos/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response buscaTodosEventosPorUsuario(String usuarioJSON){
+	public Response buscaTodosEventosPorUsuario(@PathParam("id") Integer id){
 		System.out.println("OK");
 		UsuarioDao userdao = new UsuarioDao();
-		Usuario user = userdao.fromJson(usuarioJSON);
+		Usuario user = userdao.buscaUsuarioPorId(id);
 		
 		Collection<Evento> ListaEventos = EventoDao.buscaTodosEventosPorUsuario(user);
 		JSONArray ListaJson = new JSONArray();			

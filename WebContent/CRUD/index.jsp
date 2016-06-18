@@ -280,8 +280,7 @@
 	</div>
 	<script type="text/javascript">
 		jQuery(window).load(function() {
-
-			jQuery("#loader").delay(0).fadeOut("slow");
+			jQuery("#loader").delay(2000).fadeOut("slow");
 		});
 	</script>
 
