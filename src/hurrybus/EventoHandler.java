@@ -46,7 +46,6 @@ public class EventoHandler {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response buscaTodosEventosPorUsuario(@PathParam("id") Integer id){
-		System.out.println("OK");
 		UsuarioDao userdao = new UsuarioDao();
 		Usuario user = userdao.buscaUsuarioPorId(id);
 		
@@ -56,7 +55,6 @@ public class EventoHandler {
 		for (Evento evento : ListaEventos)	 {
 			ListaJson.put(EventoDao.toJson(evento));
 			}
-		System.out.println(ListaJson.toString());
 		return Response.ok().entity(ListaJson.toString()).build();
 	}
 	 	

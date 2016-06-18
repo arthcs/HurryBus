@@ -14,14 +14,13 @@
 	$(document).ready(function() {
         $("#cadastrar").click(function() {
                $.ajax({
-            	  url: "http://localhost:8080/HurryBus/rest/usuarios",
+            	  url: "http://localhost:8080/HurryBus/rest/usuarios/login",
                contentType: "application/json; charset=utf-8",
                type: "post",
                dataType:"json",
                data : JSON.stringify( {
             	   nome : $('#nome').val(),
             	   senha : $('#senha').val(),
-            	   email : $('#email').val()
             	   }),
                success: function(data) {
                    console.log(data);

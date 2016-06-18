@@ -22,23 +22,25 @@ public class UsuarioDao {
 	 * 
 	 * @return	Retorna um List com todos os Usuários
 	 */
-	public boolean verificaUsuario(Usuario usuarios ) {
+	public Usuario verificaUsuario(Usuario usuario) {
 		Connection connection = new ConectionFactory().getConnetion();
+		Statement stmt;
 		
-		String sql = "select * from usuarios where nome = ? and senha = ?";
 		try {
-		PreparedStatement ps = connection.prepareStatement(sql);
-		ps.setString(1, usuarios.getName());
-		ps.setString(2, usuarios.getSenha());
-		ResultSet resultset = ps.executeQuery();
-		if (resultset.next()){
-			return true;
+			stmt = connection.createStatement();
+	        ResultSet rs = stmt.executeQuery("select * from usuarios where nome = '"+usuario.getName()+"' and senha = '"+usuario.getSenha()+"';");
+	        
+	        rs.next();
+	        usuario.setName(rs.getString("nome"));
+	        usuario.setSenha(rs.getString("senha"));
+	        usuario.setId(rs.getInt("id"));
+	        usuario.setEmail(rs.getString("email"));  
+	        return usuario;
 		  	}
-		  }
 		  catch (SQLException e){  
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		  }
-		  return false;
+		  return null;
 		}
 	
 	

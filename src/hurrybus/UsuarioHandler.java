@@ -86,7 +86,7 @@ public class UsuarioHandler {
 		UsuarioDao dao = new UsuarioDao();
 		Usuario user = dao.fromJson(usuarioJson);
 		dao.atualizaUsuario(user);
-		return Response.ok().build();	
+		return Response.ok().build();
 	}
 	
    /**
@@ -104,7 +104,7 @@ public class UsuarioHandler {
 		UsuarioDao dao = new UsuarioDao();
 		Usuario user = dao.buscaUsuarioPorId(id);
 		dao.excluiUsuario(user);
-		return Response.ok().build();	
+		return Response.ok().build();
 	}
 	
    /**
@@ -138,17 +138,24 @@ public class UsuarioHandler {
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response verificaUsuario(String usuarioJson)  {
+	public Response verificaUsuario(String usuarioJson) {
+		System.out.println(usuarioJson.toString());
+		
 		UsuarioDao dao = new UsuarioDao();
 		Usuario user = dao.loginJson(usuarioJson);
-		if (dao.verificaUsuario(user)){
-		    System.out.println("ok" );
-		    return Response.status(200).build();
+		
+		if (dao.verificaUsuario(user) != null){
+		    user = dao.verificaUsuario(user);
+		    JSONObject StringJSON = UsuarioDao.toJson(user);
+		    
+		    System.out.println(StringJSON.toString());
+		    return Response.ok().entity(StringJSON.toString()).build();
+		    //return Response.status(200).build();
 	
 		} else {
 			System.out.println("error");
 		    return Response.status(404).build();		
 			}
 	}
-	
+
 }
