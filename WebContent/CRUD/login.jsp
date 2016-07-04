@@ -215,6 +215,7 @@ function teste(){
 									id="cadastrar" value="Acessar" type="submit" value="Login">
 								
 								<input class="btn btn-lg btn-success btn-block" type="button" value="Cadastrar" onclick="document.location.href='UsuarioCadastra.jsp'"/>
+								<input class="btn btn-lg btn-success btn-block" type="reset" value="Limpar">
 								
 								<div class="fb-login-button" data-max-rows="1" onlogin="teste()" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
 							</fieldset>

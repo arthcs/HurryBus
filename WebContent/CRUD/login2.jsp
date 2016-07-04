@@ -165,9 +165,10 @@ function login(){
 									
 								<input class="btn btn-lg btn-success btn-block" name="btn"
 									id="btn" type="submit" value="Cadastrar" action="UsuarioCadastra.jsp">
+									
+								<input class="btn btn-lg btn-success btn-block" type="button" value="Cadastrar" onclick="document.location.href='UsuarioCadastra.jsp'"/>
 
-								<input class="btn btn-lg btn-success btn-block" type="reset"
-									value="Limpar">
+								<input class="btn btn-lg btn-success btn-block" type="reset" value="Limpar">
 								<div class="fb-login-button" data-max-rows="1" onlogin="login()" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
 							</fieldset>
 						</form>
