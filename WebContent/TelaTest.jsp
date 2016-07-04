@@ -34,7 +34,7 @@ Usuario
 
 <!--Clicando em um desses o usuario será direcinao para as funções CRUD do Evento-->
 Eventos
-<form action="CRUD\EventoCadastra.jsp" method="POST">
+<form  method="POST">
 	<input type="submit" value="Cadastrar"/>
 </form>
 

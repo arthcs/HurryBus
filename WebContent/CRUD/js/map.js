@@ -10,7 +10,7 @@ function initialize() {
  
     map = new google.maps.Map(document.getElementById("mapa"), options);
     
-    //troca a cor do mapa
+    //cor do mapa
     var cinza_parks = [ 
               			{
               			elementType: "labels.text", //Cor dos textos do mapa

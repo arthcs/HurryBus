@@ -17,7 +17,9 @@ import javax.ws.rs.core.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import hurrybus.model.Evento;
 import hurrybus.model.Usuario;
+import hurrybus.dao.EventoDao;
 import hurrybus.dao.UsuarioDao;
 
 
@@ -58,18 +60,14 @@ public class UsuarioHandler {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUsuarios() {
-		UsuarioDao dao = new UsuarioDao();
 
-		Collection<Usuario> listaUsers = new ArrayList<Usuario>();
-		listaUsers=dao.buscarTodosUsuarios();
-		
-		JSONArray listaJson = new JSONArray();
-		listaJson.put(listaUsers);
-		
-		JSONObject obj = new JSONObject();
-		obj.put("usuarios", listaJson);
+		Collection<Usuario> listaUsers = UsuarioDao.buscarTodosUsuarios();
+		JSONArray listaJson = new JSONArray();				
 
-		return Response.ok().entity(obj.toString()).build();
+		for (Usuario user : listaUsers)	 {
+			listaJson.put(UsuarioDao.toJson(user));
+			}
+		return Response.ok().entity(listaJson.toString()).build();
 	}
 	
    /**

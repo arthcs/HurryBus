@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class UsuarioDao {
 	
 	/**
-	 * Mostra todos os Usuarios cadastrados
+	 * Verifica se o usuarios esta cadastrado no banco de dados
 	 * 
 	 * @return	Retorna um List com todos os Usuários
 	 */
@@ -49,7 +49,7 @@ public class UsuarioDao {
     * 
     * @return	Retorna um List com todos os Usuários
     */
-    public List<Usuario> buscarTodosUsuarios() {
+    public static List<Usuario> buscarTodosUsuarios() {
     	ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
         try {
         	Connection con;

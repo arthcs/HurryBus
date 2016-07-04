@@ -1,5 +1,4 @@
         function carregarPontos() {
-        	//$.getJSON('EventoPontos.json', function(eventos) {
         	$.getJSON('http://localhost:8080/HurryBus/rest/eventos', function(eventos) {
         		$.each(eventos, function(index, evento) {  
         			 var marker=new google.maps.Marker({
